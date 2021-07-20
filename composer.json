@@ -1,0 +1,27 @@
+{
+    "name": "bachproject/bachproject",
+    "description": "Bach name’s project",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "albertms10",
+            "email": "albertmasa2@gmail.com"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/albertms10/bachproject.git"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "BachProject\\": "src/"
+        }
+    },
+    "require": {
+        "php": "^8"
+    }
+}

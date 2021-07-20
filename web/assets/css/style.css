@@ -1,0 +1,117 @@
+@font-face {
+  font-family: 'Bravura Text';
+  src: url("https://github.com/steinbergmedia/bravura/blob/master/redist/woff/BravuraText.woff?raw=true") format('woff'),
+    url("https://github.com/steinbergmedia/bravura/blob/master/redist/woff/BravuraText.woff2?raw=true") format('woff2');
+  unicode-range: U+266D-266F;
+}
+
+sc {
+  font-variant: all-small-caps;
+  font-weight: bold;
+  margin-right: .2rem
+}
+
+main.ui.container {
+  padding-top: 3.5rem;
+  padding-bottom: 7rem
+}
+
+.page.container {
+  position: relative;
+  min-height: 100vh;
+}
+
+.top.menu .ui.container .item {
+  padding-top: 1.1rem;
+  padding-bottom: 1.1rem;
+}
+
+.light.top.menu {
+  padding: 0em 0em;
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+  background-color: rgba(255, 255, 255, .7);
+  border-top: none;
+  border-bottom: 1px solid #DDDDDD;
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, .04);
+}
+
+.top.menu {
+  position: fixed;
+  top: 0px;
+  z-index: 900;
+  left: 0%;
+  width: 100%;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.theme.name {
+  font-size: 4rem;
+  font-weight: bold;
+  letter-spacing: .1rem
+}
+
+.sup {
+  font-weight: bold;
+  font-size: 60%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+  top: -.41em;
+}
+
+.ui.card .image {
+  text-align: center
+}
+
+.icon.volum {
+  font-size: 8rem;
+  color: gray;
+  padding-top: 4.5rem;
+  height: 1.25em;
+  opacity: .41;
+}
+
+span.list+span.list::before {
+  content: "·";
+  padding-left: .5rem;
+  padding-right: .5rem;
+}
+
+.pointer {
+  cursor: pointer
+}
+
+.ui.label>.detail {
+  margin-left: .41rem
+}
+
+.ui.footer {
+  color: #5a5a5a;
+  background-color: #f3f3f3;
+  position: absolute;
+  padding: 1rem;
+  bottom: 0;
+  width: 100%;
+  height: 4.5rem;
+  text-align: center
+}
+
+.ui.menu {
+  scrollbar-width: none;
+  -ms-overflow-style: none
+}
+
+.ui.menu::-webkit-scrollbar {
+  display: none
+}
+
+.secondary.pointing.menu .item:not(.active) {
+  font-weight: bold;
+  color: #00000082
+}
