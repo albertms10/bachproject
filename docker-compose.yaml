@@ -1,0 +1,58 @@
+version: "3.3"
+networks:
+  bachproject_network:
+services:
+  php:
+    platform: linux/x86_64
+    image: php:8.3-apache
+    container_name: bachproject
+    restart: unless-stopped
+    environment:
+      - APACHE_DOCUMENT_ROOT=/var/www/html
+    hostname: bachproject
+    domainname: bachproject.local
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+    networks:
+      - bachproject_network
+    volumes:
+      - ./src:/var/www/html
+
+  db:
+    platform: linux/x86_64
+    image: mysql:8.3
+    container_name: bachproject-db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    ports:
+      - "33306:3306"
+    expose:
+      - 3306
+    healthcheck:
+      test: mysql ${MYSQL_DATABASE} -u${MYSQL_USER} --password='${MYSQL_PASSWORD}' --silent --execute "SELECT 1;"
+      interval: 10s
+      timeout: 3s
+      retries: 5
+    networks:
+      - bachproject_network
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./data:/docker-entrypoint-initdb.d
+  composer:
+    tty: true
+    container_name: "composer"
+    image: composer:2.6
+    command: ["composer", "update"]
+    networks:
+      - bachproject_network
+    volumes:
+      - ./src:/var/www/html
+
+volumes:
+  mysql_data:
