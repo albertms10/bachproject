@@ -4,6 +4,7 @@
 
 **/dev/
 
+.env
 .env.php
 
 styles.css
