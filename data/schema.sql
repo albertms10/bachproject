@@ -1,3 +1,5 @@
+USE `bachproject`;
+
 CREATE TABLE IF NOT EXISTS `compositors` (
   `id_compositor` int(4) NOT NULL AUTO_INCREMENT,
   `nom_compositor` varchar(50) NOT NULL,
@@ -397,7 +399,7 @@ FROM (
         LEFT JOIN bp_capitols ON bp_capitols.id_capitol = bp_seccions.id_capitol
       WHERE bp_obres.id_obra = :i
       GROUP BY bp_seccions.id_seccio
-    ) s 
+    ) s
     GROUP BY id_capitol, titol_capitol
 ) c
 
@@ -419,7 +421,7 @@ FROM (
       'moviments', moviments
     )
   ) AS seccions,
-    id_capitol, 
+    id_capitol,
     titol_capitol
     FROM (
       SELECT
@@ -436,7 +438,7 @@ FROM (
           )
         ) AS moviments
       FROM (
-        SELECT 
+        SELECT
           IFNULL(bp_capitols.id_capitol, 'C') AS id_capitol,
           IFNULL(bp_seccions.id_seccio, 'S') AS id_seccio,
           bp_moviments.id_moviment,
@@ -458,6 +460,6 @@ FROM (
         GROUP BY id_capitol, titol_capitol, id_seccio, bp_moviments.id_moviment
       ) m
       GROUP BY id_capitol, titol_capitol, id_seccio, titol_seccio
-    ) s 
+    ) s
     GROUP BY id_capitol, titol_capitol
 ) c

@@ -23,19 +23,19 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estructura de la taula `bp_agrupacions`
+-- Estructura de la taula `agrupacions`
 --
 
-CREATE TABLE `bp_agrupacions` (
+CREATE TABLE IF NOT EXISTS `agrupacions` (
   `id_agrupacio` int(4) NOT NULL,
   `nom_agrupacio` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Bolcament de dades per a la taula `bp_agrupacions`
+-- Bolcament de dades per a la taula `agrupacions`
 --
 
-INSERT INTO `bp_agrupacions` (`id_agrupacio`, `nom_agrupacio`) VALUES
+INSERT IGNORE INTO `agrupacions` (`id_agrupacio`, `nom_agrupacio`) VALUES
 (1, 'Orgue'),
 (2, 'Teclat'),
 (3, 'Cor mixt'),
@@ -44,10 +44,10 @@ INSERT INTO `bp_agrupacions` (`id_agrupacio`, `nom_agrupacio`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de la taula `bp_agrupacions_instruments`
+-- Estructura de la taula `agrupacions_instruments`
 --
 
-CREATE TABLE `bp_agrupacions_instruments` (
+CREATE TABLE IF NOT EXISTS `agrupacions_instruments` (
   `id_agrupacio_instrument` int(4) NOT NULL,
   `id_agrupacio` int(4) NOT NULL,
   `id_instrument` int(4) NOT NULL,
@@ -55,10 +55,10 @@ CREATE TABLE `bp_agrupacions_instruments` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Bolcament de dades per a la taula `bp_agrupacions_instruments`
+-- Bolcament de dades per a la taula `agrupacions_instruments`
 --
 
-INSERT INTO `bp_agrupacions_instruments` (`id_agrupacio_instrument`, `id_agrupacio`, `id_instrument`, `quantitat`) VALUES
+INSERT IGNORE INTO `agrupacions_instruments` (`id_agrupacio_instrument`, `id_agrupacio`, `id_instrument`, `quantitat`) VALUES
 (1, 1, 7, 1),
 (2, 4, 1, 2),
 (3, 4, 2, 1),
@@ -68,10 +68,10 @@ INSERT INTO `bp_agrupacions_instruments` (`id_agrupacio_instrument`, `id_agrupac
 -- --------------------------------------------------------
 
 --
--- Estructura de la taula `bp_aparicions`
+-- Estructura de la taula `aparicions`
 --
 
-CREATE TABLE `bp_aparicions` (
+CREATE TABLE IF NOT EXISTS `aparicions` (
   `id_aparicio` int(4) NOT NULL,
   `compas_inici` int(4) NOT NULL,
   `temps_inici` int(1) DEFAULT NULL,
@@ -87,10 +87,10 @@ CREATE TABLE `bp_aparicions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Bolcament de dades per a la taula `bp_aparicions`
+-- Bolcament de dades per a la taula `aparicions`
 --
 
-INSERT INTO `bp_aparicions` (`id_aparicio`, `compas_inici`, `temps_inici`, `compas_final`, `temps_final`, `veu`, `divisi`, `transposicio`, `tipus`, `comentaris`, `id_obra`, `id_moviment`) VALUES
+INSERT IGNORE INTO `aparicions` (`id_aparicio`, `compas_inici`, `temps_inici`, `compas_final`, `temps_final`, `veu`, `divisi`, `transposicio`, `tipus`, `comentaris`, `id_obra`, `id_moviment`) VALUES
 (1, 58, 4, 59, 3, 'A', NULL, '+1', 'BACH', NULL, 992, 175),
 (2, 65, 1, 66, 3, 'T', NULL, '+1', 'BACH', NULL, 992, 175),
 (3, 16, 2, 18, 1, 'S', NULL, '0', 'BACH', 'Variacions rítmiques', 900, 23),
@@ -99,20 +99,20 @@ INSERT INTO `bp_aparicions` (`id_aparicio`, `compas_inici`, `temps_inici`, `comp
 -- --------------------------------------------------------
 
 --
--- Estructura de la taula `bp_aparicions_usuaris`
+-- Estructura de la taula `aparicions_usuaris`
 --
 
-CREATE TABLE `bp_aparicions_usuaris` (
+CREATE TABLE IF NOT EXISTS `aparicions_usuaris` (
   `id_aparicio` int(4) NOT NULL,
   `id_usuari` int(4) NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Bolcament de dades per a la taula `bp_aparicions_usuaris`
+-- Bolcament de dades per a la taula `aparicions_usuaris`
 --
 
-INSERT INTO `bp_aparicions_usuaris` (`id_aparicio`, `id_usuari`, `timestamp`) VALUES
+INSERT IGNORE INTO `aparicions_usuaris` (`id_aparicio`, `id_usuari`, `timestamp`) VALUES
 (1, 1, '2019-08-27 16:47:31'),
 (2, 1, '2019-08-27 16:54:51'),
 (3, 1, '2019-08-27 17:59:02'),
@@ -121,40 +121,40 @@ INSERT INTO `bp_aparicions_usuaris` (`id_aparicio`, `id_usuari`, `timestamp`) VA
 -- --------------------------------------------------------
 
 --
--- Estructura de la taula `bp_atributs`
+-- Estructura de la taula `atributs`
 --
 
-CREATE TABLE `bp_atributs` (
+CREATE TABLE IF NOT EXISTS `atributs` (
   `id_atribut` int(4) NOT NULL,
   `titol_atribut` varchar(50) NOT NULL,
   `id_subgenere` int(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Bolcament de dades per a la taula `bp_atributs`
+-- Bolcament de dades per a la taula `atributs`
 --
 
-INSERT INTO `bp_atributs` (`id_atribut`, `titol_atribut`, `id_subgenere`) VALUES
+INSERT IGNORE INTO `atributs` (`id_atribut`, `titol_atribut`, `id_subgenere`) VALUES
 (1, 'Sagrades', 1),
 (2, 'Seculars', 1);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de la taula `bp_capitols`
+-- Estructura de la taula `capitols`
 --
 
-CREATE TABLE `bp_capitols` (
+CREATE TABLE IF NOT EXISTS `capitols` (
   `id_capitol` int(4) NOT NULL,
   `num_capitol` int(4) DEFAULT NULL,
   `titol_capitol` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Bolcament de dades per a la taula `bp_capitols`
+-- Bolcament de dades per a la taula `capitols`
 --
 
-INSERT INTO `bp_capitols` (`id_capitol`, `num_capitol`, `titol_capitol`) VALUES
+INSERT IGNORE INTO `capitols` (`id_capitol`, `num_capitol`, `titol_capitol`) VALUES
 (1, 1, 'Regis issu cantio et reliqua canonica arte resoluta'),
 (2, 2, 'Sonata sopr’il soggetto Reale a traversa, violino e continuo'),
 (3, 3, 'Thematis Regii elaborationes canonicæ');
@@ -162,20 +162,20 @@ INSERT INTO `bp_capitols` (`id_capitol`, `num_capitol`, `titol_capitol`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de la taula `bp_catalegs`
+-- Estructura de la taula `catalegs`
 --
 
-CREATE TABLE `bp_catalegs` (
+CREATE TABLE IF NOT EXISTS `catalegs` (
   `id_cataleg` int(4) NOT NULL,
   `inicials_cataleg` varchar(10) NOT NULL,
   `nom_cataleg` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Bolcament de dades per a la taula `bp_catalegs`
+-- Bolcament de dades per a la taula `catalegs`
 --
 
-INSERT INTO `bp_catalegs` (`id_cataleg`, `inicials_cataleg`, `nom_cataleg`) VALUES
+INSERT IGNORE INTO `catalegs` (`id_cataleg`, `inicials_cataleg`, `nom_cataleg`) VALUES
 (1, 'BWV', 'Bach Werke Verzeichnis'),
 (2, 'BC', 'Bach Compendium'),
 (3, 'TWV', 'Telemann Werke Verzeichnis'),
@@ -185,10 +185,10 @@ INSERT INTO `bp_catalegs` (`id_cataleg`, `inicials_cataleg`, `nom_cataleg`) VALU
 -- --------------------------------------------------------
 
 --
--- Estructura de la taula `bp_catalegs_compositors`
+-- Estructura de la taula `catalegs_compositors`
 --
 
-CREATE TABLE `bp_catalegs_compositors` (
+CREATE TABLE IF NOT EXISTS `catalegs_compositors` (
   `id_cataleg_compositor` int(4) NOT NULL,
   `id_cataleg` int(4) NOT NULL,
   `id_compositor` int(4) NOT NULL,
@@ -196,10 +196,10 @@ CREATE TABLE `bp_catalegs_compositors` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Bolcament de dades per a la taula `bp_catalegs_compositors`
+-- Bolcament de dades per a la taula `catalegs_compositors`
 --
 
-INSERT INTO `bp_catalegs_compositors` (`id_cataleg_compositor`, `id_cataleg`, `id_compositor`, `alternative`) VALUES
+INSERT IGNORE INTO `catalegs_compositors` (`id_cataleg_compositor`, `id_cataleg`, `id_compositor`, `alternative`) VALUES
 (1, 1, 1, 0),
 (2, 2, 1, 1),
 (3, 3, 4, 0),
@@ -209,10 +209,10 @@ INSERT INTO `bp_catalegs_compositors` (`id_cataleg_compositor`, `id_cataleg`, `i
 -- --------------------------------------------------------
 
 --
--- Estructura de la taula `bp_compositors`
+-- Estructura de la taula `compositors`
 --
 
-CREATE TABLE `bp_compositors` (
+CREATE TABLE IF NOT EXISTS `compositors` (
   `id_compositor` int(4) NOT NULL,
   `nom_complet` varchar(100) GENERATED ALWAYS AS (concat(`cognom_compositor`,', ',`nom_compositor`)) STORED,
   `nom_compositor` varchar(50) NOT NULL,
@@ -224,10 +224,10 @@ CREATE TABLE `bp_compositors` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Bolcament de dades per a la taula `bp_compositors`
+-- Bolcament de dades per a la taula `compositors`
 --
 
-INSERT INTO `bp_compositors` (`id_compositor`, `nom_compositor`, `cognom_compositor`, `naixement`, `defuncio`) VALUES
+INSERT IGNORE INTO `compositors` (`id_compositor`, `nom_compositor`, `cognom_compositor`, `naixement`, `defuncio`) VALUES
 (1, 'Johann Sebastian', 'Bach', '1685-03-31', '1750-07-28'),
 (2, 'Johann Ludwig', 'Bach', '1677-02-04', '1731-05-01'),
 (3, 'Melchior', 'Hoffman', '1495-01-01', '1543-01-01'),
@@ -246,20 +246,20 @@ INSERT INTO `bp_compositors` (`id_compositor`, `nom_compositor`, `cognom_composi
 -- --------------------------------------------------------
 
 --
--- Estructura de la taula `bp_generes`
+-- Estructura de la taula `generes`
 --
 
-CREATE TABLE `bp_generes` (
+CREATE TABLE IF NOT EXISTS `generes` (
   `id_genere` int(4) NOT NULL,
   `titol_genere` varchar(50) NOT NULL,
   `id_compositor` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Bolcament de dades per a la taula `bp_generes`
+-- Bolcament de dades per a la taula `generes`
 --
 
-INSERT INTO `bp_generes` (`id_genere`, `titol_genere`, `id_compositor`) VALUES
+INSERT IGNORE INTO `generes` (`id_genere`, `titol_genere`, `id_compositor`) VALUES
 (1, 'Obres per a veu', 1),
 (2, 'Obres per a orgue', 1),
 (3, 'Obres per a teclat', 1),
@@ -276,19 +276,19 @@ INSERT INTO `bp_generes` (`id_genere`, `titol_genere`, `id_compositor`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de la taula `bp_instruments`
+-- Estructura de la taula `instruments`
 --
 
-CREATE TABLE `bp_instruments` (
+CREATE TABLE IF NOT EXISTS `instruments` (
   `id_instrument` int(4) NOT NULL,
   `nom_instrument` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Bolcament de dades per a la taula `bp_instruments`
+-- Bolcament de dades per a la taula `instruments`
 --
 
-INSERT INTO `bp_instruments` (`id_instrument`, `nom_instrument`) VALUES
+INSERT IGNORE INTO `instruments` (`id_instrument`, `nom_instrument`) VALUES
 (1, 'Violí'),
 (2, 'Viola'),
 (3, 'Violoncel'),
@@ -306,20 +306,20 @@ INSERT INTO `bp_instruments` (`id_instrument`, `nom_instrument`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de la taula `bp_llibres`
+-- Estructura de la taula `llibres`
 --
 
-CREATE TABLE `bp_llibres` (
+CREATE TABLE IF NOT EXISTS `llibres` (
   `id_llibre` int(4) NOT NULL,
   `titol_llibre` varchar(100) NOT NULL,
   `inicials_llibre` varchar(6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Bolcament de dades per a la taula `bp_llibres`
+-- Bolcament de dades per a la taula `llibres`
 --
 
-INSERT INTO `bp_llibres` (`id_llibre`, `titol_llibre`, `inicials_llibre`) VALUES
+INSERT IGNORE INTO `llibres` (`id_llibre`, `titol_llibre`, `inicials_llibre`) VALUES
 (1, 'Das Wohltemperierte Klavier', 'WTK'),
 (2, 'Das Orgel-Büchlein', 'OB'),
 (3, 'Notenbüchlein für Anna Magdalena Bach', 'NB'),
@@ -329,10 +329,10 @@ INSERT INTO `bp_llibres` (`id_llibre`, `titol_llibre`, `inicials_llibre`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de la taula `bp_moviments`
+-- Estructura de la taula `moviments`
 --
 
-CREATE TABLE `bp_moviments` (
+CREATE TABLE IF NOT EXISTS `moviments` (
   `id_moviment` int(6) NOT NULL,
   `num_moviment` int(4) DEFAULT NULL,
   `titol_moviment` varchar(100) DEFAULT NULL,
@@ -346,10 +346,10 @@ CREATE TABLE `bp_moviments` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Bolcament de dades per a la taula `bp_moviments`
+-- Bolcament de dades per a la taula `moviments`
 --
 
-INSERT INTO `bp_moviments` (`id_moviment`, `num_moviment`, `titol_moviment`, `subtitol_moviment`, `llibret`, `num_compassos`, `id_tonalitat`, `id_tipus_moviment`, `id_obra`, `id_seccio`) VALUES
+INSERT IGNORE INTO `moviments` (`id_moviment`, `num_moviment`, `titol_moviment`, `subtitol_moviment`, `llibret`, `num_compassos`, `id_tonalitat`, `id_tipus_moviment`, `id_obra`, `id_seccio`) VALUES
 (1, 1, 'Kyrie eleison – Christe eleison – Kyrie eleison', NULL, NULL, NULL, NULL, NULL, 267, NULL),
 (2, 2, 'Gloria in excelsis', NULL, NULL, NULL, NULL, NULL, 267, NULL),
 (3, 3, 'Domine Deus', NULL, NULL, NULL, NULL, NULL, 267, NULL),
@@ -529,29 +529,29 @@ INSERT INTO `bp_moviments` (`id_moviment`, `num_moviment`, `titol_moviment`, `su
 -- --------------------------------------------------------
 
 --
--- Estructura de la taula `bp_moviments_agrupacions`
+-- Estructura de la taula `moviments_agrupacions`
 --
 
-CREATE TABLE `bp_moviments_agrupacions` (
+CREATE TABLE IF NOT EXISTS `moviments_agrupacions` (
   `id_moviment_agrupacio` int(4) NOT NULL,
   `id_moviment` int(6) NOT NULL,
   `id_agrupacio` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Bolcament de dades per a la taula `bp_moviments_agrupacions`
+-- Bolcament de dades per a la taula `moviments_agrupacions`
 --
 
-INSERT INTO `bp_moviments_agrupacions` (`id_moviment_agrupacio`, `id_moviment`, `id_agrupacio`) VALUES
+INSERT IGNORE INTO `moviments_agrupacions` (`id_moviment_agrupacio`, `id_moviment`, `id_agrupacio`) VALUES
 (1, 7, 2);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de la taula `bp_obres`
+-- Estructura de la taula `obres`
 --
 
-CREATE TABLE `bp_obres` (
+CREATE TABLE IF NOT EXISTS `obres` (
   `id_obra` int(4) NOT NULL,
   `titol_obra` varchar(100) NOT NULL,
   `titol_alt` varchar(100) DEFAULT NULL,
@@ -563,10 +563,10 @@ CREATE TABLE `bp_obres` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Bolcament de dades per a la taula `bp_obres`
+-- Bolcament de dades per a la taula `obres`
 --
 
-INSERT INTO `bp_obres` (`id_obra`, `titol_obra`, `titol_alt`, `num_obra`, `id_tonalitat`, `estat`, `scoring`, `notes`) VALUES
+INSERT IGNORE INTO `obres` (`id_obra`, `titol_obra`, `titol_alt`, `num_obra`, `id_tonalitat`, `estat`, `scoring`, `notes`) VALUES
 (1, 'Wie schön leuchtet der Morgenstern', NULL, NULL, 15, 'C', 'For 3 voices, mixed chorus, orchestra', ''),
 (2, 'Ach Gott, vom Himmel sieh darein', NULL, NULL, 22, 'C', 'For 3 voices, mixed chorus, orchestra', ''),
 (3, 'Ach Gott, wie manches Herzeleid', NULL, NULL, 27, 'C', 'For 4 voices, mixed chorus, orchestra', ''),
@@ -1043,7 +1043,7 @@ INSERT INTO `bp_obres` (`id_obra`, `titol_obra`, `titol_alt`, `num_obra`, `id_to
 (474, 'Wenn wir in höchsten Nöten sein (I)', NULL, NULL, NULL, 'C', 'For mixed chorus', ''),
 (475, 'Wenn wir in höchsten Nöten sein (II)', NULL, NULL, NULL, 'C', 'For mixed chorus', ''),
 (476, 'Wer Gott vertraut, hat wohlgebaut', NULL, NULL, NULL, 'C', 'For mixed chorus', '');
-INSERT INTO `bp_obres` (`id_obra`, `titol_obra`, `titol_alt`, `num_obra`, `id_tonalitat`, `estat`, `scoring`, `notes`) VALUES
+INSERT IGNORE INTO `obres` (`id_obra`, `titol_obra`, `titol_alt`, `num_obra`, `id_tonalitat`, `estat`, `scoring`, `notes`) VALUES
 (477, 'Wer nur den lieben Gott lässt walten', NULL, NULL, NULL, 'C', 'For mixed chorus', ''),
 (478, 'Wie bist du, Seele, in mir so gar betrübt', NULL, NULL, NULL, 'C', 'For mixed chorus', ''),
 (479, 'Wie schön leuchtet der Morgenstern', NULL, NULL, NULL, 'C', 'For mixed chorus', ''),
@@ -1606,7 +1606,7 @@ INSERT INTO `bp_obres` (`id_obra`, `titol_obra`, `titol_alt`, `num_obra`, `id_to
 (1036, 'Prelude', NULL, NULL, 22, 'C', 'For keyboard', ''),
 (1037, 'Prelude', NULL, NULL, 28, 'C', 'For keyboard', 'Bach\'s authorship uncertain; possibly composed by Wilhelm Friedemann Bach'),
 (1038, 'Prelude', NULL, NULL, 14, 'I', 'For keyboard', 'incomplete; Bach\'s authorship uncertain; possibly composed by Wilhelm Friedemann Bach');
-INSERT INTO `bp_obres` (`id_obra`, `titol_obra`, `titol_alt`, `num_obra`, `id_tonalitat`, `estat`, `scoring`, `notes`) VALUES
+INSERT IGNORE INTO `obres` (`id_obra`, `titol_obra`, `titol_alt`, `num_obra`, `id_tonalitat`, `estat`, `scoring`, `notes`) VALUES
 (1039, 'Prelude', NULL, NULL, 1, 'C', 'For keyboard', ''),
 (1040, 'Prelude', NULL, NULL, 2, 'C', 'For keyboard', ''),
 (1041, 'Prelude', NULL, NULL, 8, 'C', 'For keyboard', ''),
@@ -2014,10 +2014,10 @@ INSERT INTO `bp_obres` (`id_obra`, `titol_obra`, `titol_alt`, `num_obra`, `id_to
 -- --------------------------------------------------------
 
 --
--- Estructura de la taula `bp_obres_anys`
+-- Estructura de la taula `obres_anys`
 --
 
-CREATE TABLE `bp_obres_anys` (
+CREATE TABLE IF NOT EXISTS `obres_anys` (
   `id_obra_any` int(6) NOT NULL,
   `any_inici` int(4) DEFAULT NULL,
   `any_final` int(4) DEFAULT NULL,
@@ -2028,10 +2028,10 @@ CREATE TABLE `bp_obres_anys` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Bolcament de dades per a la taula `bp_obres_anys`
+-- Bolcament de dades per a la taula `obres_anys`
 --
 
-INSERT INTO `bp_obres_anys` (`id_obra_any`, `any_inici`, `any_final`, `is_revisio`, `is_dubtos`, `is_circa`, `id_obra`) VALUES
+INSERT IGNORE INTO `obres_anys` (`id_obra_any`, `any_inici`, `any_final`, `is_revisio`, `is_dubtos`, `is_circa`, `id_obra`) VALUES
 (1, 1725, NULL, NULL, NULL, NULL, 1),
 (2, 1724, NULL, NULL, NULL, NULL, 2),
 (3, 1725, NULL, NULL, NULL, NULL, 3),
@@ -3036,10 +3036,10 @@ INSERT INTO `bp_obres_anys` (`id_obra_any`, `any_inici`, `any_final`, `is_revisi
 -- --------------------------------------------------------
 
 --
--- Estructura de la taula `bp_obres_catalegs`
+-- Estructura de la taula `obres_catalegs`
 --
 
-CREATE TABLE `bp_obres_catalegs` (
+CREATE TABLE IF NOT EXISTS `obres_catalegs` (
   `id_obra_cataleg` int(6) NOT NULL,
   `cataleg_complet` varchar(10) GENERATED ALWAYS AS (concat(ifnull(`seccio`,''),ifnull(`separador_seccio`,''),ifnull(`prefix_cataleg`,''),`num_cataleg`,ifnull(`separador_sufix`,''),ifnull(`sufix_cataleg`,''))) STORED,
   `seccio` varchar(4) DEFAULT NULL,
@@ -3053,10 +3053,10 @@ CREATE TABLE `bp_obres_catalegs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Bolcament de dades per a la taula `bp_obres_catalegs`
+-- Bolcament de dades per a la taula `obres_catalegs`
 --
 
-INSERT INTO `bp_obres_catalegs` (`id_obra_cataleg`, `seccio`, `separador_seccio`, `prefix_cataleg`, `num_cataleg`, `separador_sufix`, `sufix_cataleg`, `id_obra`, `id_cataleg_compositor`) VALUES
+INSERT IGNORE INTO `obres_catalegs` (`id_obra_cataleg`, `seccio`, `separador_seccio`, `prefix_cataleg`, `num_cataleg`, `separador_sufix`, `sufix_cataleg`, `id_obra`, `id_cataleg_compositor`) VALUES
 (1, NULL, NULL, NULL, 1, NULL, NULL, 1, 1),
 (2, NULL, NULL, 'A', 173, NULL, NULL, 1, 2),
 (3, NULL, NULL, NULL, 2, NULL, NULL, 2, 1),
@@ -4124,7 +4124,7 @@ INSERT INTO `bp_obres_catalegs` (`id_obra_cataleg`, `seccio`, `separador_seccio`
 (1065, NULL, NULL, NULL, 491, NULL, NULL, 534, 1),
 (1066, NULL, NULL, 'F', 238, NULL, NULL, 534, 2),
 (1067, NULL, NULL, NULL, 492, NULL, NULL, 535, 1);
-INSERT INTO `bp_obres_catalegs` (`id_obra_cataleg`, `seccio`, `separador_seccio`, `prefix_cataleg`, `num_cataleg`, `separador_sufix`, `sufix_cataleg`, `id_obra`, `id_cataleg_compositor`) VALUES
+INSERT IGNORE INTO `obres_catalegs` (`id_obra_cataleg`, `seccio`, `separador_seccio`, `prefix_cataleg`, `num_cataleg`, `separador_sufix`, `sufix_cataleg`, `id_obra`, `id_cataleg_compositor`) VALUES
 (1068, NULL, NULL, 'F', 282, NULL, NULL, 535, 2),
 (1069, NULL, NULL, NULL, 493, NULL, NULL, 536, 1),
 (1070, NULL, NULL, 'F', 234, NULL, NULL, 536, 2),
@@ -5155,7 +5155,7 @@ INSERT INTO `bp_obres_catalegs` (`id_obra_cataleg`, `seccio`, `separador_seccio`
 (2164, NULL, NULL, 'L', 9, NULL, NULL, 1096, 2),
 (2165, NULL, NULL, NULL, 989, NULL, NULL, 1097, 1),
 (2166, NULL, NULL, 'L', 179, NULL, NULL, 1097, 2);
-INSERT INTO `bp_obres_catalegs` (`id_obra_cataleg`, `seccio`, `separador_seccio`, `prefix_cataleg`, `num_cataleg`, `separador_sufix`, `sufix_cataleg`, `id_obra`, `id_cataleg_compositor`) VALUES
+INSERT IGNORE INTO `obres_catalegs` (`id_obra_cataleg`, `seccio`, `separador_seccio`, `prefix_cataleg`, `num_cataleg`, `separador_sufix`, `sufix_cataleg`, `id_obra`, `id_cataleg_compositor`) VALUES
 (2167, NULL, NULL, NULL, 990, NULL, NULL, 1098, 1),
 (2168, NULL, NULL, NULL, 991, NULL, NULL, 1099, 1),
 (2169, NULL, NULL, NULL, 992, NULL, NULL, 1100, 1),
@@ -5578,10 +5578,10 @@ INSERT INTO `bp_obres_catalegs` (`id_obra_cataleg`, `seccio`, `separador_seccio`
 -- --------------------------------------------------------
 
 --
--- Estructura de la taula `bp_obres_compositors`
+-- Estructura de la taula `obres_compositors`
 --
 
-CREATE TABLE `bp_obres_compositors` (
+CREATE TABLE IF NOT EXISTS `obres_compositors` (
   `id_obra_compositor` int(4) NOT NULL,
   `id_obra` int(4) NOT NULL,
   `id_compositor` int(4) NOT NULL,
@@ -5590,10 +5590,10 @@ CREATE TABLE `bp_obres_compositors` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Bolcament de dades per a la taula `bp_obres_compositors`
+-- Bolcament de dades per a la taula `obres_compositors`
 --
 
-INSERT INTO `bp_obres_compositors` (`id_obra_compositor`, `id_obra`, `id_compositor`, `id_tipus_autoria`, `id_tipus_relacio_compositor`) VALUES
+INSERT IGNORE INTO `obres_compositors` (`id_obra_compositor`, `id_obra`, `id_compositor`, `id_tipus_autoria`, `id_tipus_relacio_compositor`) VALUES
 (1, 1, 1, 1, 1),
 (2, 2, 1, 1, 1),
 (3, 3, 1, 1, 1),
@@ -7057,10 +7057,10 @@ INSERT INTO `bp_obres_compositors` (`id_obra_compositor`, `id_obra`, `id_composi
 -- --------------------------------------------------------
 
 --
--- Estructura de la taula `bp_obres_favorites`
+-- Estructura de la taula `obres_favorites`
 --
 
-CREATE TABLE `bp_obres_favorites` (
+CREATE TABLE IF NOT EXISTS `obres_favorites` (
   `id_obra` int(4) NOT NULL,
   `id_usuari` int(4) NOT NULL,
   `is_favorita` tinyint(1) NOT NULL DEFAULT '1',
@@ -7068,10 +7068,10 @@ CREATE TABLE `bp_obres_favorites` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Bolcament de dades per a la taula `bp_obres_favorites`
+-- Bolcament de dades per a la taula `obres_favorites`
 --
 
-INSERT INTO `bp_obres_favorites` (`id_obra`, `id_usuari`, `is_favorita`, `timestamp`) VALUES
+INSERT IGNORE INTO `obres_favorites` (`id_obra`, `id_usuari`, `is_favorita`, `timestamp`) VALUES
 (4, 1, 1, '2019-08-26 21:33:47'),
 (266, 1, 1, '2019-07-19 19:16:02'),
 (764, 1, 1, '2019-07-19 21:34:36'),
@@ -7083,10 +7083,10 @@ INSERT INTO `bp_obres_favorites` (`id_obra`, `id_usuari`, `is_favorita`, `timest
 -- --------------------------------------------------------
 
 --
--- Estructura de la taula `bp_obres_relacions`
+-- Estructura de la taula `obres_relacions`
 --
 
-CREATE TABLE `bp_obres_relacions` (
+CREATE TABLE IF NOT EXISTS `obres_relacions` (
   `id_obra_relacio` int(4) NOT NULL,
   `id_obra_1` int(4) NOT NULL,
   `id_tipus_relacio_obra` tinyint(1) NOT NULL,
@@ -7095,10 +7095,10 @@ CREATE TABLE `bp_obres_relacions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Bolcament de dades per a la taula `bp_obres_relacions`
+-- Bolcament de dades per a la taula `obres_relacions`
 --
 
-INSERT INTO `bp_obres_relacions` (`id_obra_relacio`, `id_obra_1`, `id_tipus_relacio_obra`, `is_parcialment`, `id_obra_2`) VALUES
+INSERT IGNORE INTO `obres_relacions` (`id_obra_relacio`, `id_obra_1`, `id_tipus_relacio_obra`, `is_parcialment`, `id_obra_2`) VALUES
 (1, 267, 3, 0, 268),
 (2, 267, 2, 1, 11),
 (3, 267, 2, 1, 45),
@@ -7144,20 +7144,20 @@ INSERT INTO `bp_obres_relacions` (`id_obra_relacio`, `id_obra_1`, `id_tipus_rela
 -- --------------------------------------------------------
 
 --
--- Estructura de la taula `bp_obres_subgeneres`
+-- Estructura de la taula `obres_subgeneres`
 --
 
-CREATE TABLE `bp_obres_subgeneres` (
+CREATE TABLE IF NOT EXISTS `obres_subgeneres` (
   `id_obra` int(4) NOT NULL,
   `id_subgenere` int(4) NOT NULL,
   `id_atribut` int(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Bolcament de dades per a la taula `bp_obres_subgeneres`
+-- Bolcament de dades per a la taula `obres_subgeneres`
 --
 
-INSERT INTO `bp_obres_subgeneres` (`id_obra`, `id_subgenere`, `id_atribut`) VALUES
+INSERT IGNORE INTO `obres_subgeneres` (`id_obra`, `id_subgenere`, `id_atribut`) VALUES
 (38, 1, NULL),
 (129, 2, NULL),
 (145, 10, NULL),
@@ -8603,10 +8603,10 @@ INSERT INTO `bp_obres_subgeneres` (`id_obra`, `id_subgenere`, `id_atribut`) VALU
 -- --------------------------------------------------------
 
 --
--- Estructura de la taula `bp_obres_volums`
+-- Estructura de la taula `obres_volums`
 --
 
-CREATE TABLE `bp_obres_volums` (
+CREATE TABLE IF NOT EXISTS `obres_volums` (
   `id_obra_volum` int(4) NOT NULL,
   `num_obra_volum` int(4) DEFAULT NULL,
   `id_obra` int(4) NOT NULL,
@@ -8614,10 +8614,10 @@ CREATE TABLE `bp_obres_volums` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Bolcament de dades per a la taula `bp_obres_volums`
+-- Bolcament de dades per a la taula `obres_volums`
 --
 
-INSERT INTO `bp_obres_volums` (`id_obra_volum`, `num_obra_volum`, `id_obra`, `id_volum`) VALUES
+INSERT IGNORE INTO `obres_volums` (`id_obra_volum`, `num_obra_volum`, `id_obra`, `id_volum`) VALUES
 (1, 1, 941, 1),
 (2, 1, 942, 1),
 (3, 2, 943, 1),
@@ -8795,10 +8795,10 @@ INSERT INTO `bp_obres_volums` (`id_obra_volum`, `num_obra_volum`, `id_obra`, `id
 -- --------------------------------------------------------
 
 --
--- Estructura de la taula `bp_seccions`
+-- Estructura de la taula `seccions`
 --
 
-CREATE TABLE `bp_seccions` (
+CREATE TABLE IF NOT EXISTS `seccions` (
   `id_seccio` int(4) NOT NULL,
   `num_seccio` int(4) DEFAULT NULL,
   `titol_seccio` varchar(100) DEFAULT NULL,
@@ -8806,10 +8806,10 @@ CREATE TABLE `bp_seccions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Bolcament de dades per a la taula `bp_seccions`
+-- Bolcament de dades per a la taula `seccions`
 --
 
-INSERT INTO `bp_seccions` (`id_seccio`, `num_seccio`, `titol_seccio`, `id_capitol`) VALUES
+INSERT IGNORE INTO `seccions` (`id_seccio`, `num_seccio`, `titol_seccio`, `id_capitol`) VALUES
 (1, NULL, NULL, 1),
 (2, NULL, NULL, 2),
 (3, 1, 'Canones diversi super Thema Regium', 3),
@@ -8818,20 +8818,20 @@ INSERT INTO `bp_seccions` (`id_seccio`, `num_seccio`, `titol_seccio`, `id_capito
 -- --------------------------------------------------------
 
 --
--- Estructura de la taula `bp_subgeneres`
+-- Estructura de la taula `subgeneres`
 --
 
-CREATE TABLE `bp_subgeneres` (
+CREATE TABLE IF NOT EXISTS `subgeneres` (
   `id_subgenere` int(4) NOT NULL,
   `titol_subgenere` varchar(100) NOT NULL,
   `id_genere` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Bolcament de dades per a la taula `bp_subgeneres`
+-- Bolcament de dades per a la taula `subgeneres`
 --
 
-INSERT INTO `bp_subgeneres` (`id_subgenere`, `titol_subgenere`, `id_genere`) VALUES
+INSERT IGNORE INTO `subgeneres` (`id_subgenere`, `titol_subgenere`, `id_genere`) VALUES
 (1, 'Cantates', 1),
 (2, 'Motets', 1),
 (3, 'Misses i Magnificats', 1),
@@ -8890,10 +8890,10 @@ INSERT INTO `bp_subgeneres` (`id_subgenere`, `titol_subgenere`, `id_genere`) VAL
 -- --------------------------------------------------------
 
 --
--- Estructura de la taula `bp_submoviments`
+-- Estructura de la taula `submoviments`
 --
 
-CREATE TABLE `bp_submoviments` (
+CREATE TABLE IF NOT EXISTS `submoviments` (
   `id_submoviment` int(4) NOT NULL,
   `num_submoviment` int(4) NOT NULL,
   `titol_submoviment` varchar(100) DEFAULT NULL,
@@ -8903,10 +8903,10 @@ CREATE TABLE `bp_submoviments` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Bolcament de dades per a la taula `bp_submoviments`
+-- Bolcament de dades per a la taula `submoviments`
 --
 
-INSERT INTO `bp_submoviments` (`id_submoviment`, `num_submoviment`, `titol_submoviment`, `num_compassos`, `id_tonalitat`, `id_moviment`) VALUES
+INSERT IGNORE INTO `submoviments` (`id_submoviment`, `num_submoviment`, `titol_submoviment`, `num_compassos`, `id_tonalitat`, `id_moviment`) VALUES
 (1, 1, 'Largo', NULL, NULL, 9),
 (2, 2, 'Allegro', NULL, NULL, 9),
 (3, 3, 'Andante', NULL, NULL, 9),
@@ -8925,28 +8925,28 @@ INSERT INTO `bp_submoviments` (`id_submoviment`, `num_submoviment`, `titol_submo
 -- --------------------------------------------------------
 
 --
--- Estructura de la taula `bp_temes`
+-- Estructura de la taula `temes`
 --
 
-CREATE TABLE `bp_temes` (
+CREATE TABLE IF NOT EXISTS `temes` (
   `id_tema` int(4) NOT NULL,
   `descripcio_tema` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Bolcament de dades per a la taula `bp_temes`
+-- Bolcament de dades per a la taula `temes`
 --
 
-INSERT INTO `bp_temes` (`id_tema`, `descripcio_tema`) VALUES
+INSERT IGNORE INTO `temes` (`id_tema`, `descripcio_tema`) VALUES
 (1, 'Bach');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de la taula `bp_temes_cromatiques`
+-- Estructura de la taula `temes_cromatiques`
 --
 
-CREATE TABLE `bp_temes_cromatiques` (
+CREATE TABLE IF NOT EXISTS `temes_cromatiques` (
   `id_tema_cromatica` int(4) NOT NULL,
   `id_tema` int(4) NOT NULL,
   `ordre` int(2) DEFAULT NULL,
@@ -8955,10 +8955,10 @@ CREATE TABLE `bp_temes_cromatiques` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Bolcament de dades per a la taula `bp_temes_cromatiques`
+-- Bolcament de dades per a la taula `temes_cromatiques`
 --
 
-INSERT INTO `bp_temes_cromatiques` (`id_tema_cromatica`, `id_tema`, `ordre`, `id_cromatica`, `alteracio_preferida`) VALUES
+INSERT IGNORE INTO `temes_cromatiques` (`id_tema_cromatica`, `id_tema`, `ordre`, `id_cromatica`, `alteracio_preferida`) VALUES
 (1, 1, 1, 16, 'b'),
 (2, 1, 2, 14, 's'),
 (3, 1, 3, 1, 'b'),
@@ -8967,19 +8967,19 @@ INSERT INTO `bp_temes_cromatiques` (`id_tema_cromatica`, `id_tema`, `ordre`, `id
 -- --------------------------------------------------------
 
 --
--- Estructura de la taula `bp_tipus_autories`
+-- Estructura de la taula `tipus_autories`
 --
 
-CREATE TABLE `bp_tipus_autories` (
+CREATE TABLE IF NOT EXISTS `tipus_autories` (
   `id_tipus_autoria` tinyint(1) NOT NULL,
   `tipus_autoria` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Bolcament de dades per a la taula `bp_tipus_autories`
+-- Bolcament de dades per a la taula `tipus_autories`
 --
 
-INSERT INTO `bp_tipus_autories` (`id_tipus_autoria`, `tipus_autoria`) VALUES
+INSERT IGNORE INTO `tipus_autories` (`id_tipus_autoria`, `tipus_autoria`) VALUES
 (1, 'composició'),
 (2, 'transcripció'),
 (3, 'arranjament');
@@ -8987,19 +8987,19 @@ INSERT INTO `bp_tipus_autories` (`id_tipus_autoria`, `tipus_autoria`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de la taula `bp_tipus_moviments`
+-- Estructura de la taula `tipus_moviments`
 --
 
-CREATE TABLE `bp_tipus_moviments` (
+CREATE TABLE IF NOT EXISTS `tipus_moviments` (
   `id_tipus_moviment` int(4) NOT NULL,
   `titol_tipus_moviment` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Bolcament de dades per a la taula `bp_tipus_moviments`
+-- Bolcament de dades per a la taula `tipus_moviments`
 --
 
-INSERT INTO `bp_tipus_moviments` (`id_tipus_moviment`, `titol_tipus_moviment`) VALUES
+INSERT IGNORE INTO `tipus_moviments` (`id_tipus_moviment`, `titol_tipus_moviment`) VALUES
 (1, 'Preludi'),
 (2, 'Fuga'),
 (3, 'Ouverture'),
@@ -9019,19 +9019,19 @@ INSERT INTO `bp_tipus_moviments` (`id_tipus_moviment`, `titol_tipus_moviment`) V
 -- --------------------------------------------------------
 
 --
--- Estructura de la taula `bp_tipus_relacions_compositors`
+-- Estructura de la taula `tipus_relacions_compositors`
 --
 
-CREATE TABLE `bp_tipus_relacions_compositors` (
+CREATE TABLE IF NOT EXISTS `tipus_relacions_compositors` (
   `id_tipus_relacio_compositor` tinyint(1) NOT NULL,
   `tipus_relacio_compositor` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Bolcament de dades per a la taula `bp_tipus_relacions_compositors`
+-- Bolcament de dades per a la taula `tipus_relacions_compositors`
 --
 
-INSERT INTO `bp_tipus_relacions_compositors` (`id_tipus_relacio_compositor`, `tipus_relacio_compositor`) VALUES
+INSERT IGNORE INTO `tipus_relacions_compositors` (`id_tipus_relacio_compositor`, `tipus_relacio_compositor`) VALUES
 (1, 'genuïna'),
 (2, 'dubtosa'),
 (3, 'falsa');
@@ -9039,20 +9039,20 @@ INSERT INTO `bp_tipus_relacions_compositors` (`id_tipus_relacio_compositor`, `ti
 -- --------------------------------------------------------
 
 --
--- Estructura de la taula `bp_tipus_relacions_obres`
+-- Estructura de la taula `tipus_relacions_obres`
 --
 
-CREATE TABLE `bp_tipus_relacions_obres` (
+CREATE TABLE IF NOT EXISTS `tipus_relacions_obres` (
   `id_tipus_relacio_obra` tinyint(1) NOT NULL,
   `tipus_relacio_obra_1` varchar(50) NOT NULL,
   `tipus_relacio_obra_2` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Bolcament de dades per a la taula `bp_tipus_relacions_obres`
+-- Bolcament de dades per a la taula `tipus_relacions_obres`
 --
 
-INSERT INTO `bp_tipus_relacions_obres` (`id_tipus_relacio_obra`, `tipus_relacio_obra_1`, `tipus_relacio_obra_2`) VALUES
+INSERT IGNORE INTO `tipus_relacions_obres` (`id_tipus_relacio_obra`, `tipus_relacio_obra_1`, `tipus_relacio_obra_2`) VALUES
 (1, 'adaptació de', 'revisada en'),
 (2, 'basada en', 'reutilitzada en'),
 (3, 'revisió de', 'revisada en'),
@@ -9061,10 +9061,10 @@ INSERT INTO `bp_tipus_relacions_obres` (`id_tipus_relacio_obra`, `tipus_relacio_
 -- --------------------------------------------------------
 
 --
--- Estructura de suport per a vistes `bp_tonalitats`
+-- Estructura de suport per a vistes `tonalitats`
 -- (mireu a sota per a la visualització real)
 --
-CREATE TABLE `bp_tonalitats` (
+CREATE TABLE IF NOT EXISTS `tonalitats` (
 `id_tonalitat` int(2)
 ,`tonalitat` varchar(16)
 ,`tonalitat_de` varchar(10)
@@ -9073,10 +9073,10 @@ CREATE TABLE `bp_tonalitats` (
 -- --------------------------------------------------------
 
 --
--- Estructura de la taula `bp_t_alteracions`
+-- Estructura de la taula `t_alteracions`
 --
 
-CREATE TABLE `bp_t_alteracions` (
+CREATE TABLE IF NOT EXISTS `t_alteracions` (
   `id_alteracio` varchar(1) NOT NULL,
   `nom_alteracio` varchar(10) NOT NULL,
   `simbol_alteracio` varchar(1) NOT NULL,
@@ -9084,20 +9084,20 @@ CREATE TABLE `bp_t_alteracions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Bolcament de dades per a la taula `bp_t_alteracions`
+-- Bolcament de dades per a la taula `t_alteracions`
 --
 
-INSERT INTO `bp_t_alteracions` (`id_alteracio`, `nom_alteracio`, `simbol_alteracio`, `sufix_alteracio_de`) VALUES
+INSERT IGNORE INTO `t_alteracions` (`id_alteracio`, `nom_alteracio`, `simbol_alteracio`, `sufix_alteracio_de`) VALUES
 ('b', 'bemoll', '♭', 'es'),
 ('s', 'sostingut', '♯', 'is');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de la taula `bp_t_cromatiques`
+-- Estructura de la taula `t_cromatiques`
 --
 
-CREATE TABLE `bp_t_cromatiques` (
+CREATE TABLE IF NOT EXISTS `t_cromatiques` (
   `id_cromatica` int(2) NOT NULL,
   `id_nota` int(2) NOT NULL,
   `id_alteracio` varchar(1) DEFAULT NULL,
@@ -9106,10 +9106,10 @@ CREATE TABLE `bp_t_cromatiques` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Bolcament de dades per a la taula `bp_t_cromatiques`
+-- Bolcament de dades per a la taula `t_cromatiques`
 --
 
-INSERT INTO `bp_t_cromatiques` (`id_cromatica`, `id_nota`, `id_alteracio`, `id_semito`, `cromatica_de`) VALUES
+INSERT IGNORE INTO `t_cromatiques` (`id_cromatica`, `id_nota`, `id_alteracio`, `id_semito`, `cromatica_de`) VALUES
 (1, 1, NULL, 1, 'C'),
 (2, 1, 's', 2, 'Cis'),
 (3, 2, 'b', 2, 'Des'),
@@ -9131,39 +9131,39 @@ INSERT INTO `bp_t_cromatiques` (`id_cromatica`, `id_nota`, `id_alteracio`, `id_s
 -- --------------------------------------------------------
 
 --
--- Estructura de la taula `bp_t_modes`
+-- Estructura de la taula `t_modes`
 --
 
-CREATE TABLE `bp_t_modes` (
+CREATE TABLE IF NOT EXISTS `t_modes` (
   `id_mode` varchar(1) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL,
   `nom_mode` varchar(10) NOT NULL,
   `nom_mode_de` varchar(5) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Bolcament de dades per a la taula `bp_t_modes`
+-- Bolcament de dades per a la taula `t_modes`
 --
 
-INSERT INTO `bp_t_modes` (`id_mode`, `nom_mode`, `nom_mode_de`) VALUES
+INSERT IGNORE INTO `t_modes` (`id_mode`, `nom_mode`, `nom_mode_de`) VALUES
 ('M', 'major', 'dur'),
 ('m', 'menor', 'moll');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de la taula `bp_t_notes`
+-- Estructura de la taula `t_notes`
 --
 
-CREATE TABLE `bp_t_notes` (
+CREATE TABLE IF NOT EXISTS `t_notes` (
   `id_nota` int(2) NOT NULL,
   `nom_nota` varchar(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Bolcament de dades per a la taula `bp_t_notes`
+-- Bolcament de dades per a la taula `t_notes`
 --
 
-INSERT INTO `bp_t_notes` (`id_nota`, `nom_nota`) VALUES
+INSERT IGNORE INTO `t_notes` (`id_nota`, `nom_nota`) VALUES
 (1, 'Do'),
 (2, 'Re'),
 (3, 'Mi'),
@@ -9175,18 +9175,18 @@ INSERT INTO `bp_t_notes` (`id_nota`, `nom_nota`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de la taula `bp_t_semitons`
+-- Estructura de la taula `t_semitons`
 --
 
-CREATE TABLE `bp_t_semitons` (
+CREATE TABLE IF NOT EXISTS `t_semitons` (
   `id_semito` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Bolcament de dades per a la taula `bp_t_semitons`
+-- Bolcament de dades per a la taula `t_semitons`
 --
 
-INSERT INTO `bp_t_semitons` (`id_semito`) VALUES
+INSERT IGNORE INTO `t_semitons` (`id_semito`) VALUES
 (1),
 (2),
 (3),
@@ -9203,20 +9203,20 @@ INSERT INTO `bp_t_semitons` (`id_semito`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de la taula `bp_t_tonalitats`
+-- Estructura de la taula `t_tonalitats`
 --
 
-CREATE TABLE `bp_t_tonalitats` (
+CREATE TABLE IF NOT EXISTS `t_tonalitats` (
   `id_tonalitat` int(2) NOT NULL,
   `id_cromatica` int(2) NOT NULL,
   `id_mode` varchar(1) CHARACTER SET latin1 COLLATE latin1_general_cs NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Bolcament de dades per a la taula `bp_t_tonalitats`
+-- Bolcament de dades per a la taula `t_tonalitats`
 --
 
-INSERT INTO `bp_t_tonalitats` (`id_tonalitat`, `id_cromatica`, `id_mode`) VALUES
+INSERT IGNORE INTO `t_tonalitats` (`id_tonalitat`, `id_cromatica`, `id_mode`) VALUES
 (1, 1, 'M'),
 (2, 1, 'm'),
 (3, 2, 'M'),
@@ -9255,10 +9255,10 @@ INSERT INTO `bp_t_tonalitats` (`id_tonalitat`, `id_cromatica`, `id_mode`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de suport per a vistes `bp_usuaris`
+-- Estructura de suport per a vistes `usuaris`
 -- (mireu a sota per a la visualització real)
 --
-CREATE TABLE `bp_usuaris` (
+CREATE TABLE IF NOT EXISTS `usuaris` (
 `id_usuari` int(4)
 ,`username` varchar(15)
 ,`nom_usuari` varchar(25)
@@ -9268,10 +9268,10 @@ CREATE TABLE `bp_usuaris` (
 -- --------------------------------------------------------
 
 --
--- Estructura de la taula `bp_usuaris_protected`
+-- Estructura de la taula `usuaris_protected`
 --
 
-CREATE TABLE `bp_usuaris_protected` (
+CREATE TABLE IF NOT EXISTS `usuaris_protected` (
   `id_usuari` int(4) NOT NULL,
   `username` varchar(15) NOT NULL,
   `nom_usuari` varchar(25) NOT NULL,
@@ -9280,29 +9280,29 @@ CREATE TABLE `bp_usuaris_protected` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Bolcament de dades per a la taula `bp_usuaris_protected`
+-- Bolcament de dades per a la taula `usuaris_protected`
 --
 
-INSERT INTO `bp_usuaris_protected` (`id_usuari`, `username`, `nom_usuari`, `cognom_usuari`, `contrasenya`) VALUES
+INSERT IGNORE INTO `usuaris_protected` (`id_usuari`, `username`, `nom_usuari`, `cognom_usuari`, `contrasenya`) VALUES
 (1, 'albert', 'Albert', 'Mañosa', 'b28cdefa50d2637ead4f7749da249355d5d10d9e');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de la taula `bp_volums`
+-- Estructura de la taula `volums`
 --
 
-CREATE TABLE `bp_volums` (
+CREATE TABLE IF NOT EXISTS `volums` (
   `id_volum` int(4) NOT NULL,
   `num_volum` int(2) DEFAULT NULL,
   `id_llibre` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Bolcament de dades per a la taula `bp_volums`
+-- Bolcament de dades per a la taula `volums`
 --
 
-INSERT INTO `bp_volums` (`id_volum`, `num_volum`, `id_llibre`) VALUES
+INSERT IGNORE INTO `volums` (`id_volum`, `num_volum`, `id_llibre`) VALUES
 (1, 1, 1),
 (2, 2, 1),
 (3, NULL, 2),
@@ -9316,110 +9316,110 @@ INSERT INTO `bp_volums` (`id_volum`, `num_volum`, `id_llibre`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura per a vista `bp_tonalitats`
+-- Estructura per a vista `tonalitats`
 --
-DROP TABLE IF EXISTS `bp_tonalitats`;
+DROP TABLE IF EXISTS `tonalitats`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `bp_tonalitats`  AS  select `bp_t_tonalitats`.`id_tonalitat` AS `id_tonalitat`,ifnull(concat(`bp_t_notes`.`nom_nota`,' ',`bp_t_alteracions`.`simbol_alteracio`,' ',`bp_t_modes`.`nom_mode`),concat(`bp_t_notes`.`nom_nota`,' ',`bp_t_modes`.`nom_mode`)) AS `tonalitat`,concat(`bp_t_cromatiques`.`cromatica_de`,'-',`bp_t_modes`.`nom_mode_de`) AS `tonalitat_de` from (((((`bp_t_tonalitats` join `bp_t_cromatiques` on((`bp_t_tonalitats`.`id_cromatica` = `bp_t_cromatiques`.`id_cromatica`))) join `bp_t_notes` on((`bp_t_cromatiques`.`id_nota` = `bp_t_notes`.`id_nota`))) left join `bp_t_alteracions` on((`bp_t_cromatiques`.`id_alteracio` = `bp_t_alteracions`.`id_alteracio`))) join `bp_t_semitons` on((`bp_t_cromatiques`.`id_semito` = `bp_t_semitons`.`id_semito`))) join `bp_t_modes` on((`bp_t_tonalitats`.`id_mode` = `bp_t_modes`.`id_mode`))) order by `bp_t_semitons`.`id_semito`,`bp_t_modes`.`id_mode`,`bp_t_cromatiques`.`id_cromatica` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `tonalitats`  AS  select `t_tonalitats`.`id_tonalitat` AS `id_tonalitat`,ifnull(concat(`t_notes`.`nom_nota`,' ',`t_alteracions`.`simbol_alteracio`,' ',`t_modes`.`nom_mode`),concat(`t_notes`.`nom_nota`,' ',`t_modes`.`nom_mode`)) AS `tonalitat`,concat(`t_cromatiques`.`cromatica_de`,'-',`t_modes`.`nom_mode_de`) AS `tonalitat_de` from (((((`t_tonalitats` join `t_cromatiques` on((`t_tonalitats`.`id_cromatica` = `t_cromatiques`.`id_cromatica`))) join `t_notes` on((`t_cromatiques`.`id_nota` = `t_notes`.`id_nota`))) left join `t_alteracions` on((`t_cromatiques`.`id_alteracio` = `t_alteracions`.`id_alteracio`))) join `t_semitons` on((`t_cromatiques`.`id_semito` = `t_semitons`.`id_semito`))) join `t_modes` on((`t_tonalitats`.`id_mode` = `t_modes`.`id_mode`))) order by `t_semitons`.`id_semito`,`t_modes`.`id_mode`,`t_cromatiques`.`id_cromatica` ;
 
 -- --------------------------------------------------------
 
 --
--- Estructura per a vista `bp_usuaris`
+-- Estructura per a vista `usuaris`
 --
-DROP TABLE IF EXISTS `bp_usuaris`;
+DROP TABLE IF EXISTS `usuaris`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `bp_usuaris`  AS  select `bp_usuaris_protected`.`id_usuari` AS `id_usuari`,`bp_usuaris_protected`.`username` AS `username`,`bp_usuaris_protected`.`nom_usuari` AS `nom_usuari`,`bp_usuaris_protected`.`cognom_usuari` AS `cognom_usuari` from `bp_usuaris_protected` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `usuaris`  AS  select `usuaris_protected`.`id_usuari` AS `id_usuari`,`usuaris_protected`.`username` AS `username`,`usuaris_protected`.`nom_usuari` AS `nom_usuari`,`usuaris_protected`.`cognom_usuari` AS `cognom_usuari` from `usuaris_protected` ;
 
 --
 -- Índexs per a les taules bolcades
 --
 
 --
--- Índexs per a la taula `bp_agrupacions`
+-- Índexs per a la taula `agrupacions`
 --
-ALTER TABLE `bp_agrupacions`
+ALTER TABLE `agrupacions`
   ADD PRIMARY KEY (`id_agrupacio`);
 
 --
--- Índexs per a la taula `bp_agrupacions_instruments`
+-- Índexs per a la taula `agrupacions_instruments`
 --
-ALTER TABLE `bp_agrupacions_instruments`
+ALTER TABLE `agrupacions_instruments`
   ADD PRIMARY KEY (`id_agrupacio_instrument`),
   ADD KEY `id_agrupacio` (`id_agrupacio`),
   ADD KEY `id_instrument` (`id_instrument`);
 
 --
--- Índexs per a la taula `bp_aparicions`
+-- Índexs per a la taula `aparicions`
 --
-ALTER TABLE `bp_aparicions`
+ALTER TABLE `aparicions`
   ADD PRIMARY KEY (`id_aparicio`),
   ADD KEY `id_obra` (`id_obra`),
   ADD KEY `id_moviment` (`id_moviment`);
 
 --
--- Índexs per a la taula `bp_aparicions_usuaris`
+-- Índexs per a la taula `aparicions_usuaris`
 --
-ALTER TABLE `bp_aparicions_usuaris`
+ALTER TABLE `aparicions_usuaris`
   ADD PRIMARY KEY (`id_aparicio`,`id_usuari`),
   ADD KEY `id_usuari` (`id_usuari`);
 
 --
--- Índexs per a la taula `bp_atributs`
+-- Índexs per a la taula `atributs`
 --
-ALTER TABLE `bp_atributs`
+ALTER TABLE `atributs`
   ADD PRIMARY KEY (`id_atribut`),
   ADD KEY `id_subgenere` (`id_subgenere`);
 
 --
--- Índexs per a la taula `bp_capitols`
+-- Índexs per a la taula `capitols`
 --
-ALTER TABLE `bp_capitols`
+ALTER TABLE `capitols`
   ADD PRIMARY KEY (`id_capitol`);
 
 --
--- Índexs per a la taula `bp_catalegs`
+-- Índexs per a la taula `catalegs`
 --
-ALTER TABLE `bp_catalegs`
+ALTER TABLE `catalegs`
   ADD PRIMARY KEY (`id_cataleg`);
 
 --
--- Índexs per a la taula `bp_catalegs_compositors`
+-- Índexs per a la taula `catalegs_compositors`
 --
-ALTER TABLE `bp_catalegs_compositors`
+ALTER TABLE `catalegs_compositors`
   ADD PRIMARY KEY (`id_cataleg_compositor`),
   ADD KEY `id_cataleg` (`id_cataleg`),
   ADD KEY `id_compositor` (`id_compositor`);
 
 --
--- Índexs per a la taula `bp_compositors`
+-- Índexs per a la taula `compositors`
 --
-ALTER TABLE `bp_compositors`
+ALTER TABLE `compositors`
   ADD PRIMARY KEY (`id_compositor`);
 
 --
--- Índexs per a la taula `bp_generes`
+-- Índexs per a la taula `generes`
 --
-ALTER TABLE `bp_generes`
+ALTER TABLE `generes`
   ADD PRIMARY KEY (`id_genere`),
   ADD KEY `id_compositor` (`id_compositor`);
 
 --
--- Índexs per a la taula `bp_instruments`
+-- Índexs per a la taula `instruments`
 --
-ALTER TABLE `bp_instruments`
+ALTER TABLE `instruments`
   ADD PRIMARY KEY (`id_instrument`);
 
 --
--- Índexs per a la taula `bp_llibres`
+-- Índexs per a la taula `llibres`
 --
-ALTER TABLE `bp_llibres`
+ALTER TABLE `llibres`
   ADD PRIMARY KEY (`id_llibre`);
 
 --
--- Índexs per a la taula `bp_moviments`
+-- Índexs per a la taula `moviments`
 --
-ALTER TABLE `bp_moviments`
+ALTER TABLE `moviments`
   ADD PRIMARY KEY (`id_moviment`),
   ADD KEY `id_obra` (`id_obra`),
   ADD KEY `id_seccio` (`id_seccio`),
@@ -9427,39 +9427,39 @@ ALTER TABLE `bp_moviments`
   ADD KEY `id_tipus_moviment` (`id_tipus_moviment`);
 
 --
--- Índexs per a la taula `bp_moviments_agrupacions`
+-- Índexs per a la taula `moviments_agrupacions`
 --
-ALTER TABLE `bp_moviments_agrupacions`
+ALTER TABLE `moviments_agrupacions`
   ADD PRIMARY KEY (`id_moviment_agrupacio`),
   ADD KEY `id_moviment` (`id_moviment`),
   ADD KEY `id_agrupacio` (`id_agrupacio`);
 
 --
--- Índexs per a la taula `bp_obres`
+-- Índexs per a la taula `obres`
 --
-ALTER TABLE `bp_obres`
+ALTER TABLE `obres`
   ADD PRIMARY KEY (`id_obra`),
   ADD KEY `id_tonalitat` (`id_tonalitat`);
 
 --
--- Índexs per a la taula `bp_obres_anys`
+-- Índexs per a la taula `obres_anys`
 --
-ALTER TABLE `bp_obres_anys`
+ALTER TABLE `obres_anys`
   ADD PRIMARY KEY (`id_obra_any`),
   ADD KEY `id_obra` (`id_obra`);
 
 --
--- Índexs per a la taula `bp_obres_catalegs`
+-- Índexs per a la taula `obres_catalegs`
 --
-ALTER TABLE `bp_obres_catalegs`
+ALTER TABLE `obres_catalegs`
   ADD PRIMARY KEY (`id_obra_cataleg`),
   ADD KEY `id_obra` (`id_obra`),
   ADD KEY `id_cataleg_compositor` (`id_cataleg_compositor`) USING BTREE;
 
 --
--- Índexs per a la taula `bp_obres_compositors`
+-- Índexs per a la taula `obres_compositors`
 --
-ALTER TABLE `bp_obres_compositors`
+ALTER TABLE `obres_compositors`
   ADD PRIMARY KEY (`id_obra_compositor`),
   ADD KEY `id_obra` (`id_obra`),
   ADD KEY `id_compositor` (`id_compositor`),
@@ -9467,150 +9467,150 @@ ALTER TABLE `bp_obres_compositors`
   ADD KEY `id_tipus_relacio_compositor` (`id_tipus_relacio_compositor`);
 
 --
--- Índexs per a la taula `bp_obres_favorites`
+-- Índexs per a la taula `obres_favorites`
 --
-ALTER TABLE `bp_obres_favorites`
+ALTER TABLE `obres_favorites`
   ADD PRIMARY KEY (`id_obra`,`id_usuari`),
   ADD KEY `id_usuari` (`id_usuari`);
 
 --
--- Índexs per a la taula `bp_obres_relacions`
+-- Índexs per a la taula `obres_relacions`
 --
-ALTER TABLE `bp_obres_relacions`
+ALTER TABLE `obres_relacions`
   ADD PRIMARY KEY (`id_obra_relacio`),
   ADD KEY `id_obra_1` (`id_obra_1`),
   ADD KEY `id_obra_2` (`id_obra_2`),
   ADD KEY `id_tipus_relacio_obra` (`id_tipus_relacio_obra`);
 
 --
--- Índexs per a la taula `bp_obres_subgeneres`
+-- Índexs per a la taula `obres_subgeneres`
 --
-ALTER TABLE `bp_obres_subgeneres`
+ALTER TABLE `obres_subgeneres`
   ADD PRIMARY KEY (`id_obra`,`id_subgenere`) USING BTREE,
   ADD KEY `id_subgenere` (`id_subgenere`),
   ADD KEY `id_atribut` (`id_atribut`);
 
 --
--- Índexs per a la taula `bp_obres_volums`
+-- Índexs per a la taula `obres_volums`
 --
-ALTER TABLE `bp_obres_volums`
+ALTER TABLE `obres_volums`
   ADD PRIMARY KEY (`id_obra_volum`),
   ADD KEY `id_obra` (`id_obra`),
   ADD KEY `id_volum` (`id_volum`);
 
 --
--- Índexs per a la taula `bp_seccions`
+-- Índexs per a la taula `seccions`
 --
-ALTER TABLE `bp_seccions`
+ALTER TABLE `seccions`
   ADD PRIMARY KEY (`id_seccio`),
   ADD KEY `id_capitol` (`id_capitol`);
 
 --
--- Índexs per a la taula `bp_subgeneres`
+-- Índexs per a la taula `subgeneres`
 --
-ALTER TABLE `bp_subgeneres`
+ALTER TABLE `subgeneres`
   ADD PRIMARY KEY (`id_subgenere`),
   ADD KEY `id_genere` (`id_genere`);
 
 --
--- Índexs per a la taula `bp_submoviments`
+-- Índexs per a la taula `submoviments`
 --
-ALTER TABLE `bp_submoviments`
+ALTER TABLE `submoviments`
   ADD PRIMARY KEY (`id_submoviment`),
   ADD KEY `id_moviment` (`id_moviment`),
   ADD KEY `id_tonalitat` (`id_tonalitat`);
 
 --
--- Índexs per a la taula `bp_temes`
+-- Índexs per a la taula `temes`
 --
-ALTER TABLE `bp_temes`
+ALTER TABLE `temes`
   ADD PRIMARY KEY (`id_tema`);
 
 --
--- Índexs per a la taula `bp_temes_cromatiques`
+-- Índexs per a la taula `temes_cromatiques`
 --
-ALTER TABLE `bp_temes_cromatiques`
+ALTER TABLE `temes_cromatiques`
   ADD PRIMARY KEY (`id_tema_cromatica`),
   ADD KEY `id_tema` (`id_tema`),
   ADD KEY `id_cromatica` (`id_cromatica`),
   ADD KEY `alteracio_preferida` (`alteracio_preferida`);
 
 --
--- Índexs per a la taula `bp_tipus_autories`
+-- Índexs per a la taula `tipus_autories`
 --
-ALTER TABLE `bp_tipus_autories`
+ALTER TABLE `tipus_autories`
   ADD PRIMARY KEY (`id_tipus_autoria`);
 
 --
--- Índexs per a la taula `bp_tipus_moviments`
+-- Índexs per a la taula `tipus_moviments`
 --
-ALTER TABLE `bp_tipus_moviments`
+ALTER TABLE `tipus_moviments`
   ADD PRIMARY KEY (`id_tipus_moviment`);
 
 --
--- Índexs per a la taula `bp_tipus_relacions_compositors`
+-- Índexs per a la taula `tipus_relacions_compositors`
 --
-ALTER TABLE `bp_tipus_relacions_compositors`
+ALTER TABLE `tipus_relacions_compositors`
   ADD PRIMARY KEY (`id_tipus_relacio_compositor`);
 
 --
--- Índexs per a la taula `bp_tipus_relacions_obres`
+-- Índexs per a la taula `tipus_relacions_obres`
 --
-ALTER TABLE `bp_tipus_relacions_obres`
+ALTER TABLE `tipus_relacions_obres`
   ADD PRIMARY KEY (`id_tipus_relacio_obra`);
 
 --
--- Índexs per a la taula `bp_t_alteracions`
+-- Índexs per a la taula `t_alteracions`
 --
-ALTER TABLE `bp_t_alteracions`
+ALTER TABLE `t_alteracions`
   ADD PRIMARY KEY (`id_alteracio`);
 
 --
--- Índexs per a la taula `bp_t_cromatiques`
+-- Índexs per a la taula `t_cromatiques`
 --
-ALTER TABLE `bp_t_cromatiques`
+ALTER TABLE `t_cromatiques`
   ADD PRIMARY KEY (`id_cromatica`),
   ADD KEY `id_nota` (`id_nota`),
   ADD KEY `id_alteracio` (`id_alteracio`),
   ADD KEY `id_semito` (`id_semito`);
 
 --
--- Índexs per a la taula `bp_t_modes`
+-- Índexs per a la taula `t_modes`
 --
-ALTER TABLE `bp_t_modes`
+ALTER TABLE `t_modes`
   ADD PRIMARY KEY (`id_mode`);
 
 --
--- Índexs per a la taula `bp_t_notes`
+-- Índexs per a la taula `t_notes`
 --
-ALTER TABLE `bp_t_notes`
+ALTER TABLE `t_notes`
   ADD PRIMARY KEY (`id_nota`);
 
 --
--- Índexs per a la taula `bp_t_semitons`
+-- Índexs per a la taula `t_semitons`
 --
-ALTER TABLE `bp_t_semitons`
+ALTER TABLE `t_semitons`
   ADD PRIMARY KEY (`id_semito`);
 
 --
--- Índexs per a la taula `bp_t_tonalitats`
+-- Índexs per a la taula `t_tonalitats`
 --
-ALTER TABLE `bp_t_tonalitats`
+ALTER TABLE `t_tonalitats`
   ADD PRIMARY KEY (`id_tonalitat`),
   ADD KEY `id_mode` (`id_mode`),
   ADD KEY `id_cromatica` (`id_cromatica`);
 
 --
--- Índexs per a la taula `bp_usuaris_protected`
+-- Índexs per a la taula `usuaris_protected`
 --
-ALTER TABLE `bp_usuaris_protected`
+ALTER TABLE `usuaris_protected`
   ADD PRIMARY KEY (`id_usuari`),
   ADD UNIQUE KEY `username` (`username`);
 
 --
--- Índexs per a la taula `bp_volums`
+-- Índexs per a la taula `volums`
 --
-ALTER TABLE `bp_volums`
+ALTER TABLE `volums`
   ADD PRIMARY KEY (`id_volum`),
   ADD KEY `id_llibre` (`id_llibre`);
 
@@ -9619,207 +9619,207 @@ ALTER TABLE `bp_volums`
 --
 
 --
--- AUTO_INCREMENT per la taula `bp_agrupacions`
+-- AUTO_INCREMENT per la taula `agrupacions`
 --
-ALTER TABLE `bp_agrupacions`
+ALTER TABLE `agrupacions`
   MODIFY `id_agrupacio` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT per la taula `bp_agrupacions_instruments`
+-- AUTO_INCREMENT per la taula `agrupacions_instruments`
 --
-ALTER TABLE `bp_agrupacions_instruments`
+ALTER TABLE `agrupacions_instruments`
   MODIFY `id_agrupacio_instrument` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT per la taula `bp_aparicions`
+-- AUTO_INCREMENT per la taula `aparicions`
 --
-ALTER TABLE `bp_aparicions`
+ALTER TABLE `aparicions`
   MODIFY `id_aparicio` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT per la taula `bp_atributs`
+-- AUTO_INCREMENT per la taula `atributs`
 --
-ALTER TABLE `bp_atributs`
+ALTER TABLE `atributs`
   MODIFY `id_atribut` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT per la taula `bp_capitols`
+-- AUTO_INCREMENT per la taula `capitols`
 --
-ALTER TABLE `bp_capitols`
+ALTER TABLE `capitols`
   MODIFY `id_capitol` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT per la taula `bp_catalegs`
+-- AUTO_INCREMENT per la taula `catalegs`
 --
-ALTER TABLE `bp_catalegs`
+ALTER TABLE `catalegs`
   MODIFY `id_cataleg` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT per la taula `bp_catalegs_compositors`
+-- AUTO_INCREMENT per la taula `catalegs_compositors`
 --
-ALTER TABLE `bp_catalegs_compositors`
+ALTER TABLE `catalegs_compositors`
   MODIFY `id_cataleg_compositor` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT per la taula `bp_compositors`
+-- AUTO_INCREMENT per la taula `compositors`
 --
-ALTER TABLE `bp_compositors`
+ALTER TABLE `compositors`
   MODIFY `id_compositor` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT per la taula `bp_generes`
+-- AUTO_INCREMENT per la taula `generes`
 --
-ALTER TABLE `bp_generes`
+ALTER TABLE `generes`
   MODIFY `id_genere` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT per la taula `bp_instruments`
+-- AUTO_INCREMENT per la taula `instruments`
 --
-ALTER TABLE `bp_instruments`
+ALTER TABLE `instruments`
   MODIFY `id_instrument` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT per la taula `bp_llibres`
+-- AUTO_INCREMENT per la taula `llibres`
 --
-ALTER TABLE `bp_llibres`
+ALTER TABLE `llibres`
   MODIFY `id_llibre` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT per la taula `bp_moviments`
+-- AUTO_INCREMENT per la taula `moviments`
 --
-ALTER TABLE `bp_moviments`
+ALTER TABLE `moviments`
   MODIFY `id_moviment` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=213;
 
 --
--- AUTO_INCREMENT per la taula `bp_moviments_agrupacions`
+-- AUTO_INCREMENT per la taula `moviments_agrupacions`
 --
-ALTER TABLE `bp_moviments_agrupacions`
+ALTER TABLE `moviments_agrupacions`
   MODIFY `id_moviment_agrupacio` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT per la taula `bp_obres`
+-- AUTO_INCREMENT per la taula `obres`
 --
-ALTER TABLE `bp_obres`
+ALTER TABLE `obres`
   MODIFY `id_obra` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1442;
 
 --
--- AUTO_INCREMENT per la taula `bp_obres_anys`
+-- AUTO_INCREMENT per la taula `obres_anys`
 --
-ALTER TABLE `bp_obres_anys`
+ALTER TABLE `obres_anys`
   MODIFY `id_obra_any` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1037;
 
 --
--- AUTO_INCREMENT per la taula `bp_obres_catalegs`
+-- AUTO_INCREMENT per la taula `obres_catalegs`
 --
-ALTER TABLE `bp_obres_catalegs`
+ALTER TABLE `obres_catalegs`
   MODIFY `id_obra_cataleg` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3009;
 
 --
--- AUTO_INCREMENT per la taula `bp_obres_compositors`
+-- AUTO_INCREMENT per la taula `obres_compositors`
 --
-ALTER TABLE `bp_obres_compositors`
+ALTER TABLE `obres_compositors`
   MODIFY `id_obra_compositor` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1461;
 
 --
--- AUTO_INCREMENT per la taula `bp_obres_relacions`
+-- AUTO_INCREMENT per la taula `obres_relacions`
 --
-ALTER TABLE `bp_obres_relacions`
+ALTER TABLE `obres_relacions`
   MODIFY `id_obra_relacio` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
--- AUTO_INCREMENT per la taula `bp_obres_volums`
+-- AUTO_INCREMENT per la taula `obres_volums`
 --
-ALTER TABLE `bp_obres_volums`
+ALTER TABLE `obres_volums`
   MODIFY `id_obra_volum` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=175;
 
 --
--- AUTO_INCREMENT per la taula `bp_seccions`
+-- AUTO_INCREMENT per la taula `seccions`
 --
-ALTER TABLE `bp_seccions`
+ALTER TABLE `seccions`
   MODIFY `id_seccio` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT per la taula `bp_subgeneres`
+-- AUTO_INCREMENT per la taula `subgeneres`
 --
-ALTER TABLE `bp_subgeneres`
+ALTER TABLE `subgeneres`
   MODIFY `id_subgenere` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
--- AUTO_INCREMENT per la taula `bp_submoviments`
+-- AUTO_INCREMENT per la taula `submoviments`
 --
-ALTER TABLE `bp_submoviments`
+ALTER TABLE `submoviments`
   MODIFY `id_submoviment` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT per la taula `bp_temes`
+-- AUTO_INCREMENT per la taula `temes`
 --
-ALTER TABLE `bp_temes`
+ALTER TABLE `temes`
   MODIFY `id_tema` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT per la taula `bp_temes_cromatiques`
+-- AUTO_INCREMENT per la taula `temes_cromatiques`
 --
-ALTER TABLE `bp_temes_cromatiques`
+ALTER TABLE `temes_cromatiques`
   MODIFY `id_tema_cromatica` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT per la taula `bp_tipus_autories`
+-- AUTO_INCREMENT per la taula `tipus_autories`
 --
-ALTER TABLE `bp_tipus_autories`
+ALTER TABLE `tipus_autories`
   MODIFY `id_tipus_autoria` tinyint(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT per la taula `bp_tipus_moviments`
+-- AUTO_INCREMENT per la taula `tipus_moviments`
 --
-ALTER TABLE `bp_tipus_moviments`
+ALTER TABLE `tipus_moviments`
   MODIFY `id_tipus_moviment` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT per la taula `bp_tipus_relacions_compositors`
+-- AUTO_INCREMENT per la taula `tipus_relacions_compositors`
 --
-ALTER TABLE `bp_tipus_relacions_compositors`
+ALTER TABLE `tipus_relacions_compositors`
   MODIFY `id_tipus_relacio_compositor` tinyint(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT per la taula `bp_tipus_relacions_obres`
+-- AUTO_INCREMENT per la taula `tipus_relacions_obres`
 --
-ALTER TABLE `bp_tipus_relacions_obres`
+ALTER TABLE `tipus_relacions_obres`
   MODIFY `id_tipus_relacio_obra` tinyint(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT per la taula `bp_t_cromatiques`
+-- AUTO_INCREMENT per la taula `t_cromatiques`
 --
-ALTER TABLE `bp_t_cromatiques`
+ALTER TABLE `t_cromatiques`
   MODIFY `id_cromatica` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT per la taula `bp_t_notes`
+-- AUTO_INCREMENT per la taula `t_notes`
 --
-ALTER TABLE `bp_t_notes`
+ALTER TABLE `t_notes`
   MODIFY `id_nota` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT per la taula `bp_t_semitons`
+-- AUTO_INCREMENT per la taula `t_semitons`
 --
-ALTER TABLE `bp_t_semitons`
+ALTER TABLE `t_semitons`
   MODIFY `id_semito` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT per la taula `bp_t_tonalitats`
+-- AUTO_INCREMENT per la taula `t_tonalitats`
 --
-ALTER TABLE `bp_t_tonalitats`
+ALTER TABLE `t_tonalitats`
   MODIFY `id_tonalitat` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
--- AUTO_INCREMENT per la taula `bp_usuaris_protected`
+-- AUTO_INCREMENT per la taula `usuaris_protected`
 --
-ALTER TABLE `bp_usuaris_protected`
+ALTER TABLE `usuaris_protected`
   MODIFY `id_usuari` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT per la taula `bp_volums`
+-- AUTO_INCREMENT per la taula `volums`
 --
-ALTER TABLE `bp_volums`
+ALTER TABLE `volums`
   MODIFY `id_volum` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
@@ -9827,166 +9827,166 @@ ALTER TABLE `bp_volums`
 --
 
 --
--- Restriccions per a la taula `bp_agrupacions_instruments`
+-- Restriccions per a la taula `agrupacions_instruments`
 --
-ALTER TABLE `bp_agrupacions_instruments`
-  ADD CONSTRAINT `bp_agrupacions_instruments_ibfk_1` FOREIGN KEY (`id_agrupacio`) REFERENCES `bp_agrupacions` (`id_agrupacio`),
-  ADD CONSTRAINT `bp_agrupacions_instruments_ibfk_2` FOREIGN KEY (`id_instrument`) REFERENCES `bp_instruments` (`id_instrument`);
+ALTER TABLE `agrupacions_instruments`
+  ADD CONSTRAINT `agrupacions_instruments_ibfk_1` FOREIGN KEY (`id_agrupacio`) REFERENCES `agrupacions` (`id_agrupacio`),
+  ADD CONSTRAINT `agrupacions_instruments_ibfk_2` FOREIGN KEY (`id_instrument`) REFERENCES `instruments` (`id_instrument`);
 
 --
--- Restriccions per a la taula `bp_aparicions`
+-- Restriccions per a la taula `aparicions`
 --
-ALTER TABLE `bp_aparicions`
-  ADD CONSTRAINT `bp_aparicions_ibfk_1` FOREIGN KEY (`id_obra`) REFERENCES `bp_obres` (`id_obra`),
-  ADD CONSTRAINT `bp_aparicions_ibfk_2` FOREIGN KEY (`id_moviment`) REFERENCES `bp_moviments` (`id_moviment`);
+ALTER TABLE `aparicions`
+  ADD CONSTRAINT `aparicions_ibfk_1` FOREIGN KEY (`id_obra`) REFERENCES `obres` (`id_obra`),
+  ADD CONSTRAINT `aparicions_ibfk_2` FOREIGN KEY (`id_moviment`) REFERENCES `moviments` (`id_moviment`);
 
 --
--- Restriccions per a la taula `bp_aparicions_usuaris`
+-- Restriccions per a la taula `aparicions_usuaris`
 --
-ALTER TABLE `bp_aparicions_usuaris`
-  ADD CONSTRAINT `bp_aparicions_usuaris_ibfk_1` FOREIGN KEY (`id_aparicio`) REFERENCES `bp_aparicions` (`id_aparicio`),
-  ADD CONSTRAINT `bp_aparicions_usuaris_ibfk_2` FOREIGN KEY (`id_usuari`) REFERENCES `bp_usuaris_protected` (`id_usuari`);
+ALTER TABLE `aparicions_usuaris`
+  ADD CONSTRAINT `aparicions_usuaris_ibfk_1` FOREIGN KEY (`id_aparicio`) REFERENCES `aparicions` (`id_aparicio`),
+  ADD CONSTRAINT `aparicions_usuaris_ibfk_2` FOREIGN KEY (`id_usuari`) REFERENCES `usuaris_protected` (`id_usuari`);
 
 --
--- Restriccions per a la taula `bp_atributs`
+-- Restriccions per a la taula `atributs`
 --
-ALTER TABLE `bp_atributs`
-  ADD CONSTRAINT `bp_atributs_ibfk_1` FOREIGN KEY (`id_subgenere`) REFERENCES `bp_subgeneres` (`id_subgenere`);
+ALTER TABLE `atributs`
+  ADD CONSTRAINT `atributs_ibfk_1` FOREIGN KEY (`id_subgenere`) REFERENCES `subgeneres` (`id_subgenere`);
 
 --
--- Restriccions per a la taula `bp_catalegs_compositors`
+-- Restriccions per a la taula `catalegs_compositors`
 --
-ALTER TABLE `bp_catalegs_compositors`
-  ADD CONSTRAINT `bp_catalegs_compositors_ibfk_1` FOREIGN KEY (`id_cataleg`) REFERENCES `bp_catalegs` (`id_cataleg`),
-  ADD CONSTRAINT `bp_catalegs_compositors_ibfk_2` FOREIGN KEY (`id_compositor`) REFERENCES `bp_compositors` (`id_compositor`);
+ALTER TABLE `catalegs_compositors`
+  ADD CONSTRAINT `catalegs_compositors_ibfk_1` FOREIGN KEY (`id_cataleg`) REFERENCES `catalegs` (`id_cataleg`),
+  ADD CONSTRAINT `catalegs_compositors_ibfk_2` FOREIGN KEY (`id_compositor`) REFERENCES `compositors` (`id_compositor`);
 
 --
--- Restriccions per a la taula `bp_generes`
+-- Restriccions per a la taula `generes`
 --
-ALTER TABLE `bp_generes`
-  ADD CONSTRAINT `bp_generes_ibfk_1` FOREIGN KEY (`id_compositor`) REFERENCES `bp_compositors` (`id_compositor`);
+ALTER TABLE `generes`
+  ADD CONSTRAINT `generes_ibfk_1` FOREIGN KEY (`id_compositor`) REFERENCES `compositors` (`id_compositor`);
 
 --
--- Restriccions per a la taula `bp_moviments`
+-- Restriccions per a la taula `moviments`
 --
-ALTER TABLE `bp_moviments`
-  ADD CONSTRAINT `bp_moviments_ibfk_1` FOREIGN KEY (`id_obra`) REFERENCES `bp_obres` (`id_obra`),
-  ADD CONSTRAINT `bp_moviments_ibfk_2` FOREIGN KEY (`id_seccio`) REFERENCES `bp_seccions` (`id_seccio`),
-  ADD CONSTRAINT `bp_moviments_ibfk_3` FOREIGN KEY (`id_tonalitat`) REFERENCES `bp_t_tonalitats` (`id_tonalitat`),
-  ADD CONSTRAINT `bp_moviments_ibfk_4` FOREIGN KEY (`id_tipus_moviment`) REFERENCES `bp_tipus_moviments` (`id_tipus_moviment`);
+ALTER TABLE `moviments`
+  ADD CONSTRAINT `moviments_ibfk_1` FOREIGN KEY (`id_obra`) REFERENCES `obres` (`id_obra`),
+  ADD CONSTRAINT `moviments_ibfk_2` FOREIGN KEY (`id_seccio`) REFERENCES `seccions` (`id_seccio`),
+  ADD CONSTRAINT `moviments_ibfk_3` FOREIGN KEY (`id_tonalitat`) REFERENCES `t_tonalitats` (`id_tonalitat`),
+  ADD CONSTRAINT `moviments_ibfk_4` FOREIGN KEY (`id_tipus_moviment`) REFERENCES `tipus_moviments` (`id_tipus_moviment`);
 
 --
--- Restriccions per a la taula `bp_moviments_agrupacions`
+-- Restriccions per a la taula `moviments_agrupacions`
 --
-ALTER TABLE `bp_moviments_agrupacions`
-  ADD CONSTRAINT `bp_moviments_agrupacions_ibfk_1` FOREIGN KEY (`id_moviment`) REFERENCES `bp_moviments` (`id_moviment`),
-  ADD CONSTRAINT `bp_moviments_agrupacions_ibfk_2` FOREIGN KEY (`id_agrupacio`) REFERENCES `bp_agrupacions` (`id_agrupacio`);
+ALTER TABLE `moviments_agrupacions`
+  ADD CONSTRAINT `moviments_agrupacions_ibfk_1` FOREIGN KEY (`id_moviment`) REFERENCES `moviments` (`id_moviment`),
+  ADD CONSTRAINT `moviments_agrupacions_ibfk_2` FOREIGN KEY (`id_agrupacio`) REFERENCES `agrupacions` (`id_agrupacio`);
 
 --
--- Restriccions per a la taula `bp_obres`
+-- Restriccions per a la taula `obres`
 --
-ALTER TABLE `bp_obres`
-  ADD CONSTRAINT `bp_obres_ibfk_2` FOREIGN KEY (`id_tonalitat`) REFERENCES `bp_t_tonalitats` (`id_tonalitat`);
+ALTER TABLE `obres`
+  ADD CONSTRAINT `obres_ibfk_2` FOREIGN KEY (`id_tonalitat`) REFERENCES `t_tonalitats` (`id_tonalitat`);
 
 --
--- Restriccions per a la taula `bp_obres_anys`
+-- Restriccions per a la taula `obres_anys`
 --
-ALTER TABLE `bp_obres_anys`
-  ADD CONSTRAINT `bp_obres_anys_ibfk_1` FOREIGN KEY (`id_obra`) REFERENCES `bp_obres` (`id_obra`);
+ALTER TABLE `obres_anys`
+  ADD CONSTRAINT `obres_anys_ibfk_1` FOREIGN KEY (`id_obra`) REFERENCES `obres` (`id_obra`);
 
 --
--- Restriccions per a la taula `bp_obres_catalegs`
+-- Restriccions per a la taula `obres_catalegs`
 --
-ALTER TABLE `bp_obres_catalegs`
-  ADD CONSTRAINT `bp_obres_catalegs_ibfk_1` FOREIGN KEY (`id_obra`) REFERENCES `bp_obres` (`id_obra`),
-  ADD CONSTRAINT `bp_obres_catalegs_ibfk_2` FOREIGN KEY (`id_cataleg_compositor`) REFERENCES `bp_catalegs_compositors` (`id_cataleg_compositor`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `obres_catalegs`
+  ADD CONSTRAINT `obres_catalegs_ibfk_1` FOREIGN KEY (`id_obra`) REFERENCES `obres` (`id_obra`),
+  ADD CONSTRAINT `obres_catalegs_ibfk_2` FOREIGN KEY (`id_cataleg_compositor`) REFERENCES `catalegs_compositors` (`id_cataleg_compositor`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Restriccions per a la taula `bp_obres_compositors`
+-- Restriccions per a la taula `obres_compositors`
 --
-ALTER TABLE `bp_obres_compositors`
-  ADD CONSTRAINT `bp_obres_compositors_ibfk_1` FOREIGN KEY (`id_obra`) REFERENCES `bp_obres` (`id_obra`),
-  ADD CONSTRAINT `bp_obres_compositors_ibfk_2` FOREIGN KEY (`id_compositor`) REFERENCES `bp_compositors` (`id_compositor`),
-  ADD CONSTRAINT `bp_obres_compositors_ibfk_3` FOREIGN KEY (`id_tipus_autoria`) REFERENCES `bp_tipus_autories` (`id_tipus_autoria`),
-  ADD CONSTRAINT `bp_obres_compositors_ibfk_4` FOREIGN KEY (`id_tipus_relacio_compositor`) REFERENCES `bp_tipus_relacions_compositors` (`id_tipus_relacio_compositor`);
+ALTER TABLE `obres_compositors`
+  ADD CONSTRAINT `obres_compositors_ibfk_1` FOREIGN KEY (`id_obra`) REFERENCES `obres` (`id_obra`),
+  ADD CONSTRAINT `obres_compositors_ibfk_2` FOREIGN KEY (`id_compositor`) REFERENCES `compositors` (`id_compositor`),
+  ADD CONSTRAINT `obres_compositors_ibfk_3` FOREIGN KEY (`id_tipus_autoria`) REFERENCES `tipus_autories` (`id_tipus_autoria`),
+  ADD CONSTRAINT `obres_compositors_ibfk_4` FOREIGN KEY (`id_tipus_relacio_compositor`) REFERENCES `tipus_relacions_compositors` (`id_tipus_relacio_compositor`);
 
 --
--- Restriccions per a la taula `bp_obres_favorites`
+-- Restriccions per a la taula `obres_favorites`
 --
-ALTER TABLE `bp_obres_favorites`
-  ADD CONSTRAINT `bp_obres_favorites_ibfk_1` FOREIGN KEY (`id_obra`) REFERENCES `bp_obres` (`id_obra`),
-  ADD CONSTRAINT `bp_obres_favorites_ibfk_2` FOREIGN KEY (`id_usuari`) REFERENCES `bp_usuaris_protected` (`id_usuari`);
+ALTER TABLE `obres_favorites`
+  ADD CONSTRAINT `obres_favorites_ibfk_1` FOREIGN KEY (`id_obra`) REFERENCES `obres` (`id_obra`),
+  ADD CONSTRAINT `obres_favorites_ibfk_2` FOREIGN KEY (`id_usuari`) REFERENCES `usuaris_protected` (`id_usuari`);
 
 --
--- Restriccions per a la taula `bp_obres_relacions`
+-- Restriccions per a la taula `obres_relacions`
 --
-ALTER TABLE `bp_obres_relacions`
-  ADD CONSTRAINT `bp_obres_relacions_ibfk_1` FOREIGN KEY (`id_obra_1`) REFERENCES `bp_obres` (`id_obra`),
-  ADD CONSTRAINT `bp_obres_relacions_ibfk_2` FOREIGN KEY (`id_obra_2`) REFERENCES `bp_obres` (`id_obra`),
-  ADD CONSTRAINT `bp_obres_relacions_ibfk_3` FOREIGN KEY (`id_tipus_relacio_obra`) REFERENCES `bp_tipus_relacions_obres` (`id_tipus_relacio_obra`);
+ALTER TABLE `obres_relacions`
+  ADD CONSTRAINT `obres_relacions_ibfk_1` FOREIGN KEY (`id_obra_1`) REFERENCES `obres` (`id_obra`),
+  ADD CONSTRAINT `obres_relacions_ibfk_2` FOREIGN KEY (`id_obra_2`) REFERENCES `obres` (`id_obra`),
+  ADD CONSTRAINT `obres_relacions_ibfk_3` FOREIGN KEY (`id_tipus_relacio_obra`) REFERENCES `tipus_relacions_obres` (`id_tipus_relacio_obra`);
 
 --
--- Restriccions per a la taula `bp_obres_subgeneres`
+-- Restriccions per a la taula `obres_subgeneres`
 --
-ALTER TABLE `bp_obres_subgeneres`
-  ADD CONSTRAINT `bp_obres_subgeneres_ibfk_1` FOREIGN KEY (`id_obra`) REFERENCES `bp_obres` (`id_obra`),
-  ADD CONSTRAINT `bp_obres_subgeneres_ibfk_2` FOREIGN KEY (`id_subgenere`) REFERENCES `bp_subgeneres` (`id_subgenere`),
-  ADD CONSTRAINT `bp_obres_subgeneres_ibfk_3` FOREIGN KEY (`id_atribut`) REFERENCES `bp_atributs` (`id_atribut`);
+ALTER TABLE `obres_subgeneres`
+  ADD CONSTRAINT `obres_subgeneres_ibfk_1` FOREIGN KEY (`id_obra`) REFERENCES `obres` (`id_obra`),
+  ADD CONSTRAINT `obres_subgeneres_ibfk_2` FOREIGN KEY (`id_subgenere`) REFERENCES `subgeneres` (`id_subgenere`),
+  ADD CONSTRAINT `obres_subgeneres_ibfk_3` FOREIGN KEY (`id_atribut`) REFERENCES `atributs` (`id_atribut`);
 
 --
--- Restriccions per a la taula `bp_obres_volums`
+-- Restriccions per a la taula `obres_volums`
 --
-ALTER TABLE `bp_obres_volums`
-  ADD CONSTRAINT `bp_obres_volums_ibfk_1` FOREIGN KEY (`id_obra`) REFERENCES `bp_obres` (`id_obra`),
-  ADD CONSTRAINT `bp_obres_volums_ibfk_2` FOREIGN KEY (`id_volum`) REFERENCES `bp_volums` (`id_volum`);
+ALTER TABLE `obres_volums`
+  ADD CONSTRAINT `obres_volums_ibfk_1` FOREIGN KEY (`id_obra`) REFERENCES `obres` (`id_obra`),
+  ADD CONSTRAINT `obres_volums_ibfk_2` FOREIGN KEY (`id_volum`) REFERENCES `volums` (`id_volum`);
 
 --
--- Restriccions per a la taula `bp_seccions`
+-- Restriccions per a la taula `seccions`
 --
-ALTER TABLE `bp_seccions`
-  ADD CONSTRAINT `bp_seccions_ibfk_1` FOREIGN KEY (`id_capitol`) REFERENCES `bp_capitols` (`id_capitol`);
+ALTER TABLE `seccions`
+  ADD CONSTRAINT `seccions_ibfk_1` FOREIGN KEY (`id_capitol`) REFERENCES `capitols` (`id_capitol`);
 
 --
--- Restriccions per a la taula `bp_subgeneres`
+-- Restriccions per a la taula `subgeneres`
 --
-ALTER TABLE `bp_subgeneres`
-  ADD CONSTRAINT `bp_subgeneres_ibfk_1` FOREIGN KEY (`id_genere`) REFERENCES `bp_generes` (`id_genere`);
+ALTER TABLE `subgeneres`
+  ADD CONSTRAINT `subgeneres_ibfk_1` FOREIGN KEY (`id_genere`) REFERENCES `generes` (`id_genere`);
 
 --
--- Restriccions per a la taula `bp_submoviments`
+-- Restriccions per a la taula `submoviments`
 --
-ALTER TABLE `bp_submoviments`
-  ADD CONSTRAINT `bp_submoviments_ibfk_1` FOREIGN KEY (`id_moviment`) REFERENCES `bp_moviments` (`id_moviment`),
-  ADD CONSTRAINT `bp_submoviments_ibfk_2` FOREIGN KEY (`id_tonalitat`) REFERENCES `bp_t_tonalitats` (`id_tonalitat`);
+ALTER TABLE `submoviments`
+  ADD CONSTRAINT `submoviments_ibfk_1` FOREIGN KEY (`id_moviment`) REFERENCES `moviments` (`id_moviment`),
+  ADD CONSTRAINT `submoviments_ibfk_2` FOREIGN KEY (`id_tonalitat`) REFERENCES `t_tonalitats` (`id_tonalitat`);
 
 --
--- Restriccions per a la taula `bp_temes_cromatiques`
+-- Restriccions per a la taula `temes_cromatiques`
 --
-ALTER TABLE `bp_temes_cromatiques`
-  ADD CONSTRAINT `bp_temes_cromatiques_ibfk_1` FOREIGN KEY (`id_tema`) REFERENCES `bp_temes` (`id_tema`),
-  ADD CONSTRAINT `bp_temes_cromatiques_ibfk_2` FOREIGN KEY (`id_cromatica`) REFERENCES `bp_t_cromatiques` (`id_cromatica`),
-  ADD CONSTRAINT `bp_temes_cromatiques_ibfk_3` FOREIGN KEY (`alteracio_preferida`) REFERENCES `bp_t_alteracions` (`id_alteracio`);
+ALTER TABLE `temes_cromatiques`
+  ADD CONSTRAINT `temes_cromatiques_ibfk_1` FOREIGN KEY (`id_tema`) REFERENCES `temes` (`id_tema`),
+  ADD CONSTRAINT `temes_cromatiques_ibfk_2` FOREIGN KEY (`id_cromatica`) REFERENCES `t_cromatiques` (`id_cromatica`),
+  ADD CONSTRAINT `temes_cromatiques_ibfk_3` FOREIGN KEY (`alteracio_preferida`) REFERENCES `t_alteracions` (`id_alteracio`);
 
 --
--- Restriccions per a la taula `bp_t_cromatiques`
+-- Restriccions per a la taula `t_cromatiques`
 --
-ALTER TABLE `bp_t_cromatiques`
-  ADD CONSTRAINT `bp_t_cromatiques_ibfk_1` FOREIGN KEY (`id_nota`) REFERENCES `bp_t_notes` (`id_nota`),
-  ADD CONSTRAINT `bp_t_cromatiques_ibfk_2` FOREIGN KEY (`id_alteracio`) REFERENCES `bp_t_alteracions` (`id_alteracio`),
-  ADD CONSTRAINT `bp_t_cromatiques_ibfk_3` FOREIGN KEY (`id_semito`) REFERENCES `bp_t_semitons` (`id_semito`);
+ALTER TABLE `t_cromatiques`
+  ADD CONSTRAINT `t_cromatiques_ibfk_1` FOREIGN KEY (`id_nota`) REFERENCES `t_notes` (`id_nota`),
+  ADD CONSTRAINT `t_cromatiques_ibfk_2` FOREIGN KEY (`id_alteracio`) REFERENCES `t_alteracions` (`id_alteracio`),
+  ADD CONSTRAINT `t_cromatiques_ibfk_3` FOREIGN KEY (`id_semito`) REFERENCES `t_semitons` (`id_semito`);
 
 --
--- Restriccions per a la taula `bp_t_tonalitats`
+-- Restriccions per a la taula `t_tonalitats`
 --
-ALTER TABLE `bp_t_tonalitats`
-  ADD CONSTRAINT `bp_t_tonalitats_ibfk_2` FOREIGN KEY (`id_mode`) REFERENCES `bp_t_modes` (`id_mode`),
-  ADD CONSTRAINT `bp_t_tonalitats_ibfk_3` FOREIGN KEY (`id_cromatica`) REFERENCES `bp_t_cromatiques` (`id_cromatica`);
+ALTER TABLE `t_tonalitats`
+  ADD CONSTRAINT `t_tonalitats_ibfk_2` FOREIGN KEY (`id_mode`) REFERENCES `t_modes` (`id_mode`),
+  ADD CONSTRAINT `t_tonalitats_ibfk_3` FOREIGN KEY (`id_cromatica`) REFERENCES `t_cromatiques` (`id_cromatica`);
 
 --
--- Restriccions per a la taula `bp_volums`
+-- Restriccions per a la taula `volums`
 --
-ALTER TABLE `bp_volums`
-  ADD CONSTRAINT `bp_volums_ibfk_1` FOREIGN KEY (`id_llibre`) REFERENCES `bp_llibres` (`id_llibre`);
+ALTER TABLE `volums`
+  ADD CONSTRAINT `volums_ibfk_1` FOREIGN KEY (`id_llibre`) REFERENCES `llibres` (`id_llibre`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
